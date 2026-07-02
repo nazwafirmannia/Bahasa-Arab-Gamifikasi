@@ -192,7 +192,7 @@
             @endif
 
             {{-- Register Form --}}
-            <form method="POST" action="{{ route('register.submit') }}" class="register-form" autocomplete="on">
+            <form method="POST" action="{{ secure_url(route('register.submit', [], false)) }}" class="register-form" autocomplete="on">
                 @csrf
 
                 {{-- Name Field --}}
@@ -339,7 +339,7 @@
             <div class="register-card__footer">
                 <p class="register-card__footer-text">
                     Sudah punya akun?
-                    <a href="{{ route('login') }}" class="register-card__footer-link">
+                    <a href="{{ route('login', [], false) }}" class="register-card__footer-link">
                         Login di sini
                     </a>
                 </p>
