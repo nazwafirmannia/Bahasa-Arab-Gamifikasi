@@ -1,0 +1,771 @@
+/* ===========================================================
+   ARABICQUEST — ADMIN PLACEMENT TEST FORM
+   Premium Form Design with Live Preview
+   =========================================================== */
+
+/* ===========================================================
+   1. BASE WRAPPER
+   =========================================================== */
+   .placement-form-page {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 24px;
+    font-family: var(--font-main, 'Poppins', sans-serif);
+    color: var(--aq-text-dark, #2C1810);
+}
+
+/* ===========================================================
+   2. FORM HEADER
+   =========================================================== */
+.form-header {
+    margin-bottom: 28px;
+    padding: 24px 28px;
+    background: linear-gradient(135deg, var(--aq-cream, #F8F1E5), var(--aq-cream-dark, #EFE4D0));
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-xl, 20px);
+    box-shadow: var(--shadow-sm, 0 2px 8px rgba(92, 64, 40, 0.06));
+}
+
+.form-header__back {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--aq-primary, #775537);
+    font-size: 13px;
+    font-weight: 600;
+    text-decoration: none;
+    margin-bottom: 12px;
+    transition: all 0.2s ease;
+}
+
+.form-header__back:hover {
+    color: var(--aq-primary-dark, #5C4028);
+    transform: translateX(-3px);
+}
+
+.form-header__title {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 24px;
+    font-weight: 800;
+    color: var(--aq-primary-darker, #3D2B1A);
+    margin: 0 0 6px 0;
+    line-height: 1.2;
+}
+
+.form-header__icon {
+    font-size: 28px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    background: linear-gradient(135deg, var(--aq-gold, #C9A961), var(--aq-gold-light, #E8D5A0));
+    border-radius: 12px;
+    box-shadow: var(--shadow-gold, 0 8px 24px rgba(201, 169, 97, 0.25));
+}
+
+.form-header__desc {
+    font-size: 14px;
+    color: var(--aq-text-muted, #775537);
+    margin: 0;
+    line-height: 1.5;
+}
+
+/* ===========================================================
+   3. VALIDATION ALERT
+   =========================================================== */
+.form-alert {
+    display: flex;
+    gap: 16px;
+    padding: 20px;
+    margin-bottom: 24px;
+    border-radius: var(--radius-lg, 16px);
+    align-items: flex-start;
+}
+
+.form-alert--error {
+    background: linear-gradient(135deg, var(--aq-danger-light, #FFEBEE), #FFF5F5);
+    border: 2px solid var(--aq-danger, #E53935);
+    box-shadow: 0 8px 24px rgba(229, 57, 53, 0.15);
+}
+
+.form-alert__icon {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, var(--aq-danger, #E53935), var(--aq-danger-dark, #B71C1C));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22px;
+    color: var(--aq-white, #FFFFFF);
+    flex-shrink: 0;
+    box-shadow: 0 6px 16px rgba(229, 57, 53, 0.3);
+}
+
+.form-alert__content {
+    flex: 1;
+}
+
+.form-alert__title {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--aq-danger-dark, #B71C1C);
+    margin: 0 0 8px 0;
+}
+
+.form-alert__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-alert__list li {
+    position: relative;
+    padding: 6px 12px 6px 28px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: var(--radius-sm, 8px);
+    font-size: 13px;
+    color: var(--aq-danger-dark, #B71C1C);
+    font-weight: 500;
+}
+
+.form-alert__list li::before {
+    content: '•';
+    position: absolute;
+    left: 12px;
+    color: var(--aq-danger, #E53935);
+    font-weight: 800;
+}
+
+/* ===========================================================
+   4. FORM GRID (Form + Preview)
+   =========================================================== */
+.form-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 24px;
+    align-items: start;
+}
+
+/* ===========================================================
+   5. FORM MAIN
+   =========================================================== */
+.form-main {
+    background: var(--aq-white, #FFFFFF);
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-xl, 20px);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.placement-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+/* ===========================================================
+   6. FORM GROUPS
+   =========================================================== */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.form-label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--aq-primary, #775537);
+}
+
+.form-label i {
+    color: var(--aq-gold, #C9A961);
+    font-size: 14px;
+}
+
+.form-label__required {
+    color: var(--aq-danger, #E53935);
+    font-weight: 800;
+}
+
+.form-label--section {
+    font-size: 14px;
+    margin-bottom: 8px;
+    padding-bottom: 10px;
+    border-bottom: 2px dashed var(--aq-border, #E5D5C0);
+}
+
+/* Input */
+.form-input {
+    padding: 12px 16px;
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-md, 12px);
+    font-size: 14px;
+    color: var(--aq-text-dark, #2C1810);
+    background: var(--aq-white, #FFFFFF);
+    transition: all 0.2s ease;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-input:focus {
+    outline: none;
+    border-color: var(--aq-primary, #775537);
+    box-shadow: 0 0 0 3px rgba(119, 85, 55, 0.1);
+    background: #FFFBF5;
+}
+
+.form-input::placeholder {
+    color: #A89080;
+}
+
+/* Textarea */
+.form-textarea {
+    padding: 12px 16px;
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-md, 12px);
+    font-size: 14px;
+    color: var(--aq-text-dark, #2C1810);
+    background: var(--aq-white, #FFFFFF);
+    transition: all 0.2s ease;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    resize: vertical;
+    min-height: 100px;
+    line-height: 1.6;
+}
+
+.form-textarea:focus {
+    outline: none;
+    border-color: var(--aq-primary, #775537);
+    box-shadow: 0 0 0 3px rgba(119, 85, 55, 0.1);
+    background: #FFFBF5;
+}
+
+.form-textarea::placeholder {
+    color: #A89080;
+}
+
+/* Arabic Font Textarea */
+.form-textarea--arabic {
+    font-family: 'Amiri', 'Traditional Arabic', serif;
+    font-size: 18px;
+    line-height: 2;
+    direction: rtl;
+    text-align: right;
+}
+
+/* Select */
+.form-select {
+    padding: 12px 40px 12px 16px;
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-md, 12px);
+    font-size: 14px;
+    color: var(--aq-text-dark, #2C1810);
+    background: var(--aq-white, #FFFFFF);
+    transition: all 0.2s ease;
+    font-family: inherit;
+    width: 100%;
+    box-sizing: border-box;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%23775537' d='M6 9L1 4h10z'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-position: right 16px center;
+    cursor: pointer;
+}
+
+.form-select:focus {
+    outline: none;
+    border-color: var(--aq-primary, #775537);
+    box-shadow: 0 0 0 3px rgba(119, 85, 55, 0.1);
+}
+
+/* Error Message */
+.form-error {
+    font-size: 12px;
+    color: var(--aq-danger, #E53935);
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 2px;
+}
+
+.form-error::before {
+    content: '⚠';
+    font-size: 12px;
+}
+
+/* ===========================================================
+   7. OPTIONS GRID
+   =========================================================== */
+.form-options {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.form-options__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+}
+
+.form-option {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-option__label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--aq-primary, #775537);
+}
+
+.form-option__key {
+    width: 26px;
+    height: 26px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--aq-gold, #C9A961), var(--aq-gold-light, #E8D5A0));
+    color: var(--aq-primary-darker, #3D2B1A);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+    box-shadow: 0 2px 6px rgba(201, 169, 97, 0.3);
+}
+
+/* ===========================================================
+   8. FORM ROW (2 columns)
+   =========================================================== */
+.form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+/* ===========================================================
+   9. CHECKBOX
+   =========================================================== */
+.form-group--checkbox {
+    padding: 16px 20px;
+    background: var(--aq-cream, #F8F1E5);
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-md, 12px);
+}
+
+.form-checkbox {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    cursor: pointer;
+    user-select: none;
+}
+
+.form-checkbox__input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.form-checkbox__box {
+    width: 24px;
+    height: 24px;
+    border-radius: 6px;
+    background: var(--aq-white, #FFFFFF);
+    border: 2px solid var(--aq-border, #E5D5C0);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s ease;
+    flex-shrink: 0;
+}
+
+.form-checkbox__box i {
+    font-size: 12px;
+    color: var(--aq-white, #FFFFFF);
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.2s ease;
+}
+
+.form-checkbox__input:checked + .form-checkbox__box {
+    background: linear-gradient(135deg, var(--aq-success, #4CAF50), var(--aq-success-dark, #2E7D32));
+    border-color: var(--aq-success, #4CAF50);
+}
+
+.form-checkbox__input:checked + .form-checkbox__box i {
+    opacity: 1;
+    transform: scale(1);
+}
+
+.form-checkbox__input:focus-visible + .form-checkbox__box {
+    outline: 3px solid var(--aq-gold, #C9A961);
+    outline-offset: 2px;
+}
+
+.form-checkbox__label {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.form-checkbox__label strong {
+    font-size: 14px;
+    font-weight: 700;
+    color: var(--aq-text-dark, #2C1810);
+}
+
+.form-checkbox__label small {
+    font-size: 12px;
+    color: var(--aq-text-muted, #775537);
+    font-weight: 400;
+}
+
+/* ===========================================================
+   10. FORM ACTIONS
+   =========================================================== */
+.form-actions {
+    display: flex;
+    gap: 12px;
+    padding-top: 20px;
+    border-top: 2px dashed var(--aq-border, #E5D5C0);
+    margin-top: 8px;
+}
+
+.form-actions__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    padding: 13px 24px;
+    border-radius: var(--radius-md, 12px);
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    border: none;
+    font-family: inherit;
+    text-decoration: none;
+}
+
+.form-actions__btn--cancel {
+    background: var(--aq-white, #FFFFFF);
+    color: var(--aq-text-muted, #775537);
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+}
+
+.form-actions__btn--cancel:hover {
+    background: var(--aq-cream, #F8F1E5);
+    color: var(--aq-text-dark, #2C1810);
+    border-color: var(--aq-primary, #775537);
+}
+
+.form-actions__btn--submit {
+    background: linear-gradient(135deg, var(--aq-primary, #775537), var(--aq-primary-dark, #5C4028));
+    color: var(--aq-white, #FFFFFF);
+    box-shadow: 0 6px 16px rgba(119, 85, 55, 0.3);
+    flex: 1;
+}
+
+.form-actions__btn--submit:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 24px rgba(119, 85, 55, 0.4);
+    background: linear-gradient(135deg, var(--aq-primary-dark, #5C4028), var(--aq-primary-darker, #3D2B1A));
+}
+
+/* ===========================================================
+   11. PREVIEW PANEL
+   =========================================================== */
+.form-preview {
+    position: sticky;
+    top: 24px;
+}
+
+.preview-card {
+    background: var(--aq-white, #FFFFFF);
+    border: 1.5px solid var(--aq-border, #E5D5C0);
+    border-radius: var(--radius-xl, 20px);
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.preview-card__header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 18px 24px;
+    background: linear-gradient(135deg, var(--aq-primary, #775537), var(--aq-primary-dark, #5C4028));
+    color: var(--aq-white, #FFFFFF);
+    font-size: 14px;
+    font-weight: 700;
+}
+
+.preview-card__header i {
+    color: var(--aq-gold, #C9A961);
+}
+
+.preview-card__body {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* Preview Difficulty */
+.preview-difficulty__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.preview-difficulty__badge--empty {
+    background: var(--aq-gray-light, #F3F4F6);
+    color: var(--aq-gray, #6B7280);
+    border: 1px solid var(--aq-border, #E5D5C0);
+}
+
+.preview-difficulty__badge--easy {
+    background: var(--aq-success-light, #E8F5E9);
+    color: var(--aq-success-dark, #2E7D32);
+    border: 1px solid var(--aq-success, #4CAF50);
+}
+
+.preview-difficulty__badge--medium {
+    background: var(--aq-warning-light, #FEF3C7);
+    color: var(--aq-warning-dark, #92400E);
+    border: 1px solid var(--aq-warning, #F59E0B);
+}
+
+.preview-difficulty__badge--hard {
+    background: var(--aq-danger-light, #FFEBEE);
+    color: var(--aq-danger-dark, #B71C1C);
+    border: 1px solid var(--aq-danger, #E53935);
+}
+
+/* Preview Question */
+.preview-question {
+    padding: 16px;
+    background: var(--aq-cream, #F8F1E5);
+    border-radius: var(--radius-md, 12px);
+    border-left: 3px solid var(--aq-gold, #C9A961);
+    min-height: 80px;
+}
+
+.preview-question__text {
+    font-size: 14px;
+    color: var(--aq-text-dark, #2C1810);
+    line-height: 1.6;
+    margin: 0;
+    font-weight: 500;
+    word-wrap: break-word;
+}
+
+.preview-question__placeholder {
+    font-size: 13px;
+    color: var(--aq-text-muted, #775537);
+    font-style: italic;
+    opacity: 0.7;
+}
+
+/* Preview Options */
+.preview-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.preview-option {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 14px;
+    background: var(--aq-cream, #F8F1E5);
+    border-radius: var(--radius-sm, 8px);
+    font-size: 13px;
+    color: var(--aq-text-dark, #2C1810);
+    transition: all 0.2s ease;
+    border: 1.5px solid transparent;
+}
+
+.preview-option--correct {
+    background: var(--aq-success-light, #E8F5E9);
+    border-color: var(--aq-success, #4CAF50);
+    color: var(--aq-success-dark, #2E7D32);
+    font-weight: 600;
+}
+
+.preview-option__key {
+    width: 26px;
+    height: 26px;
+    border-radius: 6px;
+    background: var(--aq-white, #FFFFFF);
+    color: var(--aq-primary, #775537);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 800;
+    flex-shrink: 0;
+    border: 1px solid var(--aq-border, #E5D5C0);
+}
+
+.preview-option--correct .preview-option__key {
+    background: var(--aq-success, #4CAF50);
+    color: var(--aq-white, #FFFFFF);
+    border-color: var(--aq-success, #4CAF50);
+}
+
+.preview-option__text {
+    flex: 1;
+    word-wrap: break-word;
+}
+
+.preview-option__text--empty {
+    color: var(--aq-text-muted, #775537);
+    font-style: italic;
+    opacity: 0.6;
+}
+
+/* Preview Answer */
+.preview-answer {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 16px;
+    background: linear-gradient(135deg, rgba(201, 169, 97, 0.1), rgba(201, 169, 97, 0.05));
+    border: 1.5px solid var(--aq-gold, #C9A961);
+    border-radius: var(--radius-md, 12px);
+}
+
+.preview-answer__label {
+    font-size: 12px;
+    color: var(--aq-text-muted, #775537);
+    font-weight: 600;
+}
+
+.preview-answer__value {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--aq-text-muted, #775537);
+}
+
+.preview-answer__value--filled {
+    color: var(--aq-primary, #775537);
+    background: var(--aq-gold-light, #E8D5A0);
+    padding: 4px 12px;
+    border-radius: 8px;
+}
+
+/* ===========================================================
+   12. RESPONSIVE
+   =========================================================== */
+@media (max-width: 1100px) {
+    .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-preview {
+        position: static;
+    }
+}
+
+@media (max-width: 768px) {
+    .placement-form-page {
+        padding: 16px;
+    }
+
+    .form-header {
+        padding: 20px;
+    }
+
+    .form-header__title {
+        font-size: 20px;
+    }
+
+    .form-main {
+        padding: 24px 20px;
+    }
+
+    .form-options__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .form-row {
+        grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+        flex-direction: column-reverse;
+    }
+
+    .form-actions__btn {
+        width: 100%;
+    }
+}
+
+@media (max-width: 480px) {
+    .form-header__title {
+        font-size: 18px;
+    }
+
+    .form-header__icon {
+        width: 38px;
+        height: 38px;
+        font-size: 20px;
+    }
+
+    .form-main {
+        padding: 20px 16px;
+    }
+
+    .preview-card__body {
+        padding: 18px;
+    }
+}
+
+/* ===========================================================
+   13. ACCESSIBILITY
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .form-header__back:hover,
+    .form-actions__btn--submit:hover {
+        transform: none !important;
+    }
+}
+
+.form-input:focus-visible,
+.form-textarea:focus-visible,
+.form-select:focus-visible,
+.form-actions__btn:focus-visible {
+    outline: 3px solid var(--aq-gold, #C9A961);
+    outline-offset: 2px;
+}

@@ -1,0 +1,119 @@
+/* ===========================================================
+   ARABLEARN - THEME.CSS (REDESIGN)
+   Struktur: Global → Layout → Sections (BEM) → Utilities
+   =========================================================== */
+
+   @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+   @import './Dashboard.css';
+   @import './Level.css';
+   @import './Material.css';
+   @import './Practice.css';
+   @import './Practice-Result.css';
+   @import './Quiz.css';
+   @import './Quiz-Result.css';
+   @import './Leaderboard.css';
+   @import './Profile.css';
+   @import './Login.css';
+   @import './Register.css';
+   @import './Landing.css';
+   @import './Placement.css';
+   @import './Placement-Result.css';
+   @import './Admin-Character-Form.css';
+   /* ===========================================================
+      1. GLOBAL VARIABLES
+      =========================================================== */
+   :root {
+       --bg-main: #E3DCA8;
+       --bg-sidebar: #a98369;
+       --bg-card: #F4EFE6;
+   
+       --primary: #775537;
+       --primary-light: #8B6B47;
+       --primary-dark: #4A3428;
+   
+       --accent-green: #8A9A66;
+       --accent-green-light: #98C39A;
+       --accent-gold: #C9A961;
+       --accent-terracotta: #A85D4A;
+       --accent-teal: #6B8E7A;
+       --accent-sage: #9CAF88;
+       --accent-sand: #C9B99A;
+       --accent-olive: #8B956D;
+   
+       --text-dark: #2C1810;
+       --text-muted: #5C4838;
+       --text-white: #FFFFFF;
+       --text-on-dark: #F4EFE6;
+   
+       --border: #C4B59A;
+       --shadow: 0 4px 20px rgba(92, 51, 23, 0.15);
+       --shadow-hover: 0 8px 30px rgba(92, 51, 23, 0.25);
+   
+       --font-main: 'Poppins', sans-serif;
+       --font-heading: 'Merriweather', serif;
+       --font-logo: 'Cinzel', serif;
+   }
+   
+   /* ===========================================================
+      2. GLOBAL RESET & BODY
+      =========================================================== */
+   * {
+       margin: 0;
+       padding: 0;
+       box-sizing: border-box;
+   }
+   
+   body {
+       background-color: var(--bg-main) !important;
+       font-family: var(--font-main) !important;
+       color: var(--text-dark) !important;
+       line-height: 1.6;
+   }
+   
+   /* ===========================================================
+      3. TYPOGRAPHY
+      =========================================================== */
+   h1, h2, h3, h4, h5, h6 {
+       font-family: var(--font-heading) !important;
+       color: var(--text-dark) !important;
+   }
+   
+   /* ===========================================================
+      4. SIDEBAR (UNCHANGED — hanya dipertahankan)
+      =========================================================== */
+   /* ===========================================================
+   4. SIDEBAR
+   =========================================================== */
+
+#sidebar {
+    background-color: var(--bg-sidebar) !important;
+    color: var(--text-on-dark) !important;
+}
+
+#sidebar a {
+    color: rgba(255,255,255,0.85) !important;
+    transition: all 0.3s ease !important;
+    padding: 12px 20px !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    border-radius: 8px !important;
+    margin: 4px 8px !important;
+    text-decoration: none !important;
+}
+
+#sidebar a.active {
+    background: linear-gradient(
+        90deg,
+        var(--primary),
+        var(--primary-light)
+    ) !important;
+    
+    color: var(--text-white) !important;
+    font-weight: 600 !important;
+    border-left: 4px solid var(--accent-gold) !important;
+}
+
+#sidebar {
+    background: #775537 !important;
+}

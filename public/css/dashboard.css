@@ -1,0 +1,819 @@
+   /* ===========================================================
+      5. SECTION 1 — HERO LEARNING
+      =========================================================== */
+   .hero-learning {
+       background: linear-gradient(135deg, var(--accent-sage), #7BA868, var(--accent-green));
+       border-radius: 24px;
+       padding: 32px;
+       display: grid;
+       grid-template-columns: auto 1fr auto;
+       gap: 32px;
+       align-items: center;
+       box-shadow: 0 12px 40px rgba(138, 154, 102, 0.3);
+       margin-bottom: 32px;
+       position: relative;
+       overflow: hidden;
+   }
+   
+   .hero-learning::before {
+       content: '';
+       position: absolute;
+       top: -50%;
+       right: -20%;
+       width: 400px;
+       height: 400px;
+       background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+       pointer-events: none;
+   }
+   
+   .hero-learning__avatar-wrapper {
+       position: relative;
+       z-index: 2;
+   }
+   
+   .hero-learning__avatar {
+       width: 110px;
+       height: 110px;
+       border-radius: 50%;
+       border: 4px solid var(--accent-gold);
+       overflow: hidden;
+       box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+       background: var(--bg-card);
+   }
+   
+   .hero-learning__avatar img {
+       width: 100%;
+       height: 100%;
+       object-fit: cover;
+   }
+   
+   .hero-learning__level-badge {
+       position: absolute;
+       bottom: -4px;
+       right: -4px;
+       background: var(--accent-gold);
+       color: var(--text-dark);
+       font-size: 11px;
+       font-weight: 700;
+       padding: 4px 10px;
+       border-radius: 12px;
+       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+   }
+   
+   .hero-learning__content{
+    z-index:2;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-start;
+}
+   
+.hero-learning__greeting{
+    display:inline;
+    font-family:'Amiri', serif;
+    font-size:30px;
+    font-weight:700;
+    color:#000000;
+    margin-left:8px;
+    vertical-align:middle;
+}
+
+.hero-learning__comma{
+    margin:0 6px;
+    color:#000000;
+    font-weight:700;
+}
+
+.hero-learning__name{
+    display:flex;
+    align-items:baseline;
+    flex-wrap:wrap;
+    gap:2px;
+    margin:0 0 10px 0;
+    font-size:36px;
+    font-weight:800;
+    color:var(--text-dark);
+    font-family:var(--font-heading);
+}
+
+.hero-learning__stage{
+    display:flex;
+    align-items:center;
+    gap:8px;
+    margin-top:10px;
+    margin-bottom:0;
+    font-size:15px;
+}
+   
+   .hero-learning__stage-icon {
+       font-size: 16px;
+   }
+   
+   .hero-learning__action {
+       z-index: 2;
+       display: flex;
+       flex-direction: column;
+       align-items: flex-end;
+       gap: 12px;
+   }
+   
+   .hero-learning__btn {
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 14px 28px;
+       background: var(--text-dark);
+       color: var(--text-white) !important;
+       border-radius: 16px;
+       font-weight: 5000;
+       font-size: 15px;
+       text-decoration: none !important;
+       transition: all 0.3s ease;
+       box-shadow: 0 6px 20px rgba(44, 24, 16, 0.3);
+   }
+   
+   .hero-learning__btn:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 10px 30px rgba(44, 24, 16, 0.4);
+   }
+   
+   .hero-learning__btn-arrow {
+       transition: transform 0.3s ease;
+   }
+   
+   .hero-learning__btn:hover .hero-learning__btn-arrow {
+       transform: translateX(4px);
+   }
+   
+   .hero-learning__progress-mini {
+       display: flex;
+       align-items: center;
+       gap: 8px;
+       font-size: 12px;
+       color: var(--text-dark);
+   }
+   
+   .hero-learning__progress-label {
+       font-size: 11px;
+       opacity: 0.7;
+   }
+   
+   .hero-learning__progress-bar {
+       width: 100px;
+       height: 6px;
+       background: rgba(0,0,0,0.15);
+       border-radius: 3px;
+       overflow: hidden;
+   }
+   
+   .hero-learning__progress-fill {
+       height: 100%;
+       background: var(--accent-gold);
+       border-radius: 3px;
+       transition: width 0.6s ease;
+   }
+   
+   .hero-learning__progress-text {
+       font-weight: 600;
+       font-size: 12px;
+   }
+
+   .hero-learning__progress-detail{
+    font-size:11px;
+    color:var(--text-dark);
+    margin-top:4px;
+    }
+
+   /* ===========================================================
+      6. SECTION 2 — QUEST PANEL
+      =========================================================== */
+   .quest-panel {
+       background: var(--bg-card);
+       border: 2px solid var(--border);
+       border-radius: 20px;
+       padding: 28px;
+       margin-bottom: 32px;
+       box-shadow: var(--shadow);
+   }
+   
+   .quest-panel__header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       margin-bottom: 20px;
+       padding-bottom: 16px;
+       border-bottom: 2px dashed var(--border);
+   }
+   
+   .quest-panel__title {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       font-size: 20px;
+       font-weight: 700;
+       color: var(--text-dark);
+       font-family: var(--font-heading);
+   }
+   
+   .quest-panel__icon {
+       font-size: 24px;
+   }
+   
+   .quest-panel__counter {
+       background: var(--accent-green);
+       color: var(--text-white);
+       padding: 6px 14px;
+       border-radius: 20px;
+       font-size: 13px;
+       font-weight: 600;
+   }
+   
+   .quest-panel__list {
+       display: flex;
+       flex-direction: column;
+       gap: 12px;
+       margin-bottom: 20px;
+   }
+   
+   .quest-panel__item {
+       display: flex;
+       align-items: center;
+       gap: 14px;
+       padding: 14px 18px;
+       background: rgba(92, 51, 23, 0.04);
+       border: 1px solid var(--border);
+       border-radius: 14px;
+       transition: all 0.3s ease;
+   }
+   
+   .quest-panel__item--done {
+       background: rgba(138, 154, 102, 0.1);
+       border-color: var(--accent-green);
+   }
+   
+   .quest-panel__item-check {
+       font-size: 20px;
+       flex-shrink: 0;
+   }
+   
+   .quest-panel__item-content {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       flex: 1;
+   }
+   
+   .quest-panel__item-label {
+       font-size: 14px;
+       font-weight: 500;
+       color: var(--text-dark);
+   }
+   
+   .quest-panel__item--done .quest-panel__item-label {
+       text-decoration: line-through;
+       opacity: 0.6;
+   }
+   
+   .quest-panel__item-reward {
+       font-size: 12px;
+       font-weight: 700;
+       color: var(--accent-gold);
+       background: rgba(201, 169, 97, 0.15);
+       padding: 4px 10px;
+       border-radius: 8px;
+   }
+   
+   .quest-panel__progress {
+       margin-top: 8px;
+   }
+   
+   .quest-panel__progress-bar {
+       width: 100%;
+       height: 10px;
+       background: rgba(92, 51, 23, 0.1);
+       border-radius: 5px;
+       overflow: hidden;
+   }
+   
+   .quest-panel__progress-fill {
+       height: 100%;
+       background: linear-gradient(90deg, var(--accent-green), var(--accent-green-light));
+       border-radius: 5px;
+       transition: width 0.6s ease;
+       position: relative;
+   }
+   
+   .quest-panel__progress-fill::after {
+       content: '';
+       position: absolute;
+       top: 0;
+       left: -100%;
+       width: 100%;
+       height: 100%;
+       background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+       animation: shimmer 2s infinite;
+   }
+   
+   @keyframes shimmer {
+       100% { left: 100%; }
+   }
+   
+   .quick-stats{
+    display:flex;
+    justify-content:center;
+    gap:30px;
+    margin:30px 0;
+}
+
+.quick-stat-orb{
+    width:140px;
+    height:140px;
+    border-radius:50%;
+    background:white;
+    border:4px solid var(--accent-gold);
+
+    display:flex;
+    flex-direction:column;
+    justify-content:center;
+    align-items:center;
+
+    box-shadow:var(--shadow);
+}
+
+.quick-stat-orb__icon{
+    font-size:30px;
+}
+
+.quick-stat-orb__number{
+    font-size:24px;
+    font-weight:700;
+}
+
+.quick-stat-orb__label{
+    font-size:12px;
+    letter-spacing:2px;
+}
+
+   /* ===========================================================
+      7. SECTION 3 — LEARNING JOURNEY
+      =========================================================== */
+      .learning-journey{
+        background:var(--bg-card);
+        border:2px solid var(--border);
+        border-radius:20px;
+        padding:24px;
+        margin-bottom:24px;
+    }
+    
+    .learning-journey__header{
+        text-align:center;
+        margin-bottom:24px;
+    }
+    
+    .journey-stage{
+        border:2px solid var(--border);
+        border-radius:16px;
+        padding:20px;
+        margin-bottom:16px;
+    }
+    
+    .journey-stage--current{
+        border-color:var(--accent-green);
+    }
+    
+    .journey-stage--completed{
+        border-color:var(--accent-gold);
+    }
+    
+    .journey-stage--locked{
+        opacity:.5;
+    }
+    
+    .journey-stage__header{
+        display:flex;
+        gap:8px;
+        align-items:center;
+        margin-bottom:12px;
+    }
+    
+    .learning-journey__title {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        font-size: 24px;
+        font-weight: 700;
+        color: var(--text-dark);
+        font-family: var(--font-heading);
+        margin-bottom: 8px;
+    }
+
+    .journey-stage__progress{
+        margin:12px 0;
+    }
+    
+    .journey-stage__progress-bar{
+        height:8px;
+        background:#ddd;
+        border-radius:999px;
+        overflow:hidden;
+    }
+    
+    .journey-stage__progress-fill{
+        height:100%;
+        background:var(--accent-green);
+    }
+    
+    .journey-stage__btn{
+        display:inline-block;
+        padding:10px 16px;
+        border-radius:10px;
+    
+        background:var(--accent-green);
+        color:white !important;
+        text-decoration:none;
+    }
+   
+   /* ===========================================================
+      8. SECTION 4 — ACHIEVEMENT GALLERY
+      =========================================================== */
+   .achievement-gallery {
+       background: var(--bg-card);
+       border: 2px solid var(--border);
+       border-radius: 20px;
+       padding: 28px;
+       margin-bottom: 32px;
+       box-shadow: var(--shadow);
+   }
+   
+   .achievement-gallery__header {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       margin-bottom: 24px;
+       padding-bottom: 16px;
+       border-bottom: 2px dashed var(--border);
+   }
+   
+   .achievement-gallery__title {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       font-size: 20px;
+       font-weight: 700;
+       color: var(--text-dark);
+       font-family: var(--font-heading);
+   }
+   
+   .achievement-gallery__icon {
+       font-size: 24px;
+   }
+   
+   .achievement-gallery__count {
+       font-size: 13px;
+       font-weight: 600;
+       color: var(--primary);
+       background: rgba(119, 85, 55, 0.1);
+       padding: 6px 14px;
+       border-radius: 20px;
+   }
+   
+   .achievement-gallery__grid {
+       display: grid;
+       grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+       gap: 16px;
+   }
+   
+   .achievement-card {
+       display: flex;
+       align-items: center;
+       gap: 14px;
+       padding: 16px;
+       border-radius: 14px;
+       border: 2px solid var(--border);
+       background: var(--bg-card);
+       transition: all 0.3s ease;
+   }
+   
+   .achievement-card:hover {
+       transform: translateY(-2px);
+       box-shadow: var(--shadow);
+   }
+   
+   .achievement-card--unlocked {
+       border-color: var(--accent-gold);
+       background: rgba(201, 169, 97, 0.06);
+   }
+   
+   .achievement-card--locked {
+       opacity: 0.5;
+       filter: grayscale(0.5);
+   }
+   
+   .achievement-card__icon {
+       font-size: 32px;
+       flex-shrink: 0;
+       width: 48px;
+       height: 48px;
+       display: flex;
+       align-items: center;
+       justify-content: center;
+       background: rgba(201, 169, 97, 0.15);
+       border-radius: 12px;
+   }
+   
+   .achievement-card__icon--locked {
+       background: rgba(92, 51, 23, 0.08);
+       font-size: 20px;
+   }
+   
+   .achievement-card__info {
+       display: flex;
+       flex-direction: column;
+       gap: 2px;
+       min-width: 0;
+   }
+   
+   .achievement-card__name {
+       font-size: 14px;
+       font-weight: 700;
+       color: var(--text-dark);
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+   }
+   
+   .achievement-card__desc {
+       font-size: 11px;
+       color: var(--text-muted);
+       white-space: nowrap;
+       overflow: hidden;
+       text-overflow: ellipsis;
+   }
+   
+   /* ===========================================================
+      9. SECTION 5 — LEADERBOARD BANNER
+      =========================================================== */
+   .leaderboard-banner {
+       background: linear-gradient(135deg, var(--primary), var(--primary-light), var(--primary-dark));
+       border-radius: 20px;
+       padding: 28px 32px;
+       margin-bottom: 32px;
+       box-shadow: 0 12px 40px rgba(119, 85, 55, 0.3);
+       position: relative;
+       overflow: hidden;
+   }
+   
+   .leaderboard-banner::before {
+       content: '';
+       position: absolute;
+       top: -50%;
+       right: -10%;
+       width: 300px;
+       height: 300px;
+       background: radial-gradient(circle, rgba(201, 169, 97, 0.2) 0%, transparent 70%);
+       pointer-events: none;
+   }
+   
+   .leaderboard-banner__content {
+       display: flex;
+       justify-content: space-between;
+       align-items: center;
+       gap: 20px;
+       position: relative;
+       z-index: 2;
+   }
+   
+   .leaderboard-banner__info {
+       display: flex;
+       flex-direction: column;
+       gap: 6px;
+   }
+   
+   .leaderboard-banner__title {
+       display: flex;
+       align-items: center;
+       gap: 10px;
+       font-size: 22px;
+       font-weight: 700;
+       color: var(--text-white) !important;
+       font-family: var(--font-heading);
+   }
+   
+   .leaderboard-banner__icon {
+       font-size: 26px;
+   }
+   
+   .leaderboard-banner__desc {
+       font-size: 14px;
+       color: rgba(255,255,255,0.8);
+   }
+   
+   .leaderboard-banner__btn {
+       display: inline-flex;
+       align-items: center;
+       gap: 8px;
+       padding: 14px 28px;
+       background: var(--accent-gold);
+       color: var(--text-dark) !important;
+       border-radius: 14px;
+       font-weight: 700;
+       font-size: 14px;
+       text-decoration: none !important;
+       transition: all 0.3s ease;
+       box-shadow: 0 4px 16px rgba(201, 169, 97, 0.4);
+       white-space: nowrap;
+   }
+   
+   .leaderboard-banner__btn:hover {
+       transform: translateY(-2px);
+       box-shadow: 0 8px 24px rgba(201, 169, 97, 0.5);
+   }
+   
+   .leaderboard-banner__btn-arrow {
+       transition: transform 0.3s ease;
+   }
+   
+   .leaderboard-banner__btn:hover .leaderboard-banner__btn-arrow {
+       transform: translateX(4px);
+   }
+   
+   .leaderboard-banner__decoration {
+       position: absolute;
+       top: 50%;
+       right: 120px;
+       transform: translateY(-50%);
+       display: flex;
+       gap: 8px;
+       opacity: 0.15;
+       font-size: 40px;
+       pointer-events: none;
+   }
+   
+   /* ===========================================================
+      10. UTILITIES & ANIMATIONS
+      =========================================================== */
+   .hover-lift {
+       transition: transform 0.2s ease, box-shadow 0.2s ease !important;
+   }
+   .hover-lift:hover {
+       transform: translateY(-4px) !important;
+       box-shadow: var(--shadow-hover) !important;
+   }
+   
+   @keyframes float {
+       0%, 100% { transform: translateY(0); }
+       50% { transform: translateY(-6px); }
+   }
+   .animate-float {
+       animation: float 3s ease-in-out infinite;
+   }
+   
+   @keyframes confetti-fall {
+       0% { transform: translateY(-100vh) rotate(0deg); opacity: 1; }
+       100% { transform: translateY(100vh) rotate(720deg); opacity: 0; }
+   }
+   .confetti {
+       position: fixed;
+       width: 10px;
+       height: 10px;
+       background: var(--accent-gold);
+       animation: confetti-fall 3s ease-out forwards;
+       pointer-events: none;
+       z-index: 1000;
+   }
+   
+   /* ===========================================================
+      11. RESPONSIVE
+      =========================================================== */
+   @media (max-width: 768px) {
+       .hero-learning {
+           grid-template-columns: 1fr;
+           text-align: center;
+           gap: 20px;
+           padding: 24px;
+       }
+   
+       .hero-learning__avatar-wrapper {
+           justify-self: center;
+       }
+   
+       .hero-learning__stats {
+           justify-content: center;
+           flex-wrap: wrap;
+       }
+   
+       .hero-learning__action {
+           align-items: center;
+       }
+   
+       .journey-stage {
+           grid-template-columns: 48px 1fr;
+           gap: 14px;
+           padding: 18px;
+       }
+   
+       .journey-stage__circle {
+           width: 40px;
+           height: 40px;
+           font-size: 16px;
+       }
+   
+       .journey-stage__name {
+           font-size: 15px;
+       }
+   
+       .achievement-gallery__grid {
+           grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+       }
+   
+       .leaderboard-banner__content {
+           flex-direction: column;
+           text-align: center;
+       }
+   
+       .leaderboard-banner__decoration {
+           display: none;
+       }
+   }
+   
+   @media (max-width: 480px) {
+       .hero-learning__name {
+           font-size: 22px;
+       }
+   
+       .hero-learning__stats {
+           gap: 10px;
+       }
+   
+       .hero-learning__stat {
+           padding: 6px 10px;
+       }
+   
+       .quest-panel__item-content {
+           flex-direction: column;
+           align-items: flex-start;
+           gap: 4px;
+       }
+   
+       .achievement-gallery__grid {
+           grid-template-columns: 1fr;
+       }
+   }
+   
+   .badge-popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0,0,0,.65);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    z-index:9999;
+}
+
+.badge-popup-card{
+    width:420px;
+    max-width:90%;
+    background:#F4EFE6;
+    border-radius:24px;
+    padding:40px;
+    text-align:center;
+    animation:badgePop .5s ease;
+}
+
+.badge-popup-icon{
+    font-size:80px;
+    margin-bottom:16px;
+}
+
+.badge-popup-card h2{
+    margin-bottom:10px;
+}
+
+.badge-popup-card button{
+    margin-top:20px;
+    padding:12px 24px;
+    border:none;
+    border-radius:12px;
+    background:#8A9A66;
+    color:white;
+    cursor:pointer;
+}
+
+@keyframes badgePop{
+    from{
+        opacity:0;
+        transform:scale(.6);
+    }
+    to{
+        opacity:1;
+        transform:scale(1);
+    }
+}
+
+   @media (prefers-reduced-motion: reduce) {
+       *, *::before, *::after {
+           animation-duration: 0.01ms !important;
+           animation-iteration-count: 1 !important;
+           transition-duration: 0.01ms !important;
+       }
+   }

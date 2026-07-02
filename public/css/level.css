@@ -1,0 +1,910 @@
+/* ===========================================================
+   ARABLEARN - LEVEL PAGE CSS
+   Namespace: level-page, level-breadcrumb, level-hero,
+              level-materials, level-material-card,
+              final-challenge, level-footer
+   =========================================================== */
+
+/* ===========================================================
+   1. LEVEL PAGE — WRAPPER
+   =========================================================== */
+   .level-page {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 24px 16px 48px;
+}
+
+/* ===========================================================
+   2. BREADCRUMB
+   =========================================================== */
+.level-breadcrumb {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-size: 13px;
+    margin-bottom: 24px;
+    flex-wrap: wrap;
+}
+
+.level-breadcrumb__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    color: var(--primary);
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+}
+
+.level-breadcrumb__link:hover {
+    color: var(--primary-dark);
+    transform: translateX(-2px);
+}
+
+.level-breadcrumb__sep {
+    font-size: 10px;
+    color: var(--border);
+}
+
+.level-breadcrumb__item {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.level-breadcrumb__item--active {
+    color: var(--primary);
+    font-weight: 700;
+}
+
+/* ===========================================================
+   3. LEVEL HERO
+   =========================================================== */
+.level-hero {
+    background: linear-gradient(135deg, #D9C9AA 0%, #E4D4B0 100%);
+    border: 2px solid var(--border);
+    border-radius: 24px;
+    padding: 32px;
+    box-shadow: 0 8px 30px rgba(92, 51, 23, 0.12);
+    margin-bottom: 32px;
+    position: relative;
+    overflow: hidden;
+}
+
+.level-hero::before {
+    content: '';
+    position: absolute;
+    top: -80px;
+    right: -80px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.25) 0%, transparent 70%);
+    pointer-events: none;
+}
+
+.level-hero__content {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+    position: relative;
+    z-index: 2;
+}
+
+.level-hero__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.level-hero__eyebrow {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--primary);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    background: rgba(255, 255, 255, 0.5);
+    padding: 5px 12px;
+    border-radius: 20px;
+    align-self: flex-start;
+}
+
+.level-hero__title {
+    font-family: var(--font-heading);
+    font-size: 32px;
+    font-weight: 700;
+    color: #5C3317 !important;
+    line-height: 1.2;
+    margin: 0;
+}
+
+.level-hero__desc {
+    font-size: 14px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    max-width: 520px;
+}
+
+.level-hero__meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 8px;
+}
+
+.level-hero__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 14px;
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(44, 24, 16, 0.15);
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    color: #2C1810;
+}
+
+.level-hero__badge-icon {
+    font-size: 14px;
+}
+
+/* --- Progress Ring --- */
+.level-hero__progress-ring-wrapper {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+}
+
+.level-hero__progress-ring {
+    position: relative;
+    width: 110px;
+    height: 110px;
+}
+
+.level-hero__progress-svg {
+    width: 100%;
+    height: 100%;
+    transform: rotate(-90deg);
+}
+
+.level-hero__progress-bg {
+    fill: none;
+    stroke: rgba(44, 24, 16, 0.15);
+    stroke-width: 5;
+}
+
+.level-hero__progress-fg {
+    fill: none;
+    stroke: #775537;
+    stroke-width: 5;
+    stroke-linecap: round;
+    transition: stroke-dashoffset 0.8s ease;
+    filter: drop-shadow(0 2px 4px rgba(119, 85, 55, 0.3));
+}
+
+.level-hero__progress-ring-label {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+}
+
+.level-hero__progress-ring-value {
+    font-family: var(--font-heading);
+    font-size: 28px;
+    font-weight: 700;
+    color: #5C3317;
+}
+
+.level-hero__progress-ring-unit {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--primary);
+}
+
+.level-hero__progress-ring-caption {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* --- Progress Bar --- */
+.level-hero__bar-wrapper {
+    margin-top: 28px;
+    padding-top: 24px;
+    border-top: 2px dashed rgba(92, 51, 23, 0.2);
+    position: relative;
+    z-index: 2;
+}
+
+.level-hero__bar-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+    font-size: 13px;
+}
+
+.level-hero__bar-label {
+    color: var(--text-dark);
+    font-weight: 600;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.level-hero__bar-label i {
+    color: var(--accent-green);
+}
+
+.level-hero__bar-total {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.level-hero__bar {
+    width: 100%;
+    height: 10px;
+    background: rgba(255, 255, 255, 0.5);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: inset 0 1px 3px rgba(0, 0, 0, 0.08);
+}
+
+.level-hero__bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #775537, #8B6B47);
+    border-radius: 10px;
+    position: relative;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    box-shadow: 0 2px 6px rgba(119, 85, 55, 0.4);
+}
+
+.level-hero__bar-shine {
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.5), transparent);
+    animation: level-bar-shine 2.5s infinite;
+}
+
+.level-progression{
+    margin-bottom:32px;
+    background:#fff;
+    border:2px solid var(--border);
+    border-radius:20px;
+    padding:24px;
+}
+
+.level-progression__header{
+    margin-bottom:24px;
+}
+
+.level-progression__header h2{
+    margin:0;
+    font-size:20px;
+}
+
+.level-progression__header span{
+    color:var(--text-muted);
+    font-size:13px;
+}
+
+.level-progression__timeline{
+    display:flex;
+    justify-content:space-between;
+    gap:20px;
+}
+
+.level-node{
+    flex:1;
+    text-align:center;
+    position:relative;
+}
+
+.level-node:not(:last-child)::after{
+    content:'';
+    position:absolute;
+    top:26px;
+    left:60%;
+    width:80%;
+    height:4px;
+    background:var(--border);
+}
+
+.level-node__circle{
+    width:52px;
+    height:52px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin:0 auto 12px;
+    font-weight:700;
+    font-size:18px;
+}
+
+.level-node--completed .level-node__circle{
+    background:var(--accent-green);
+    color:white;
+}
+
+.level-node--current .level-node__circle{
+    background:var(--primary);
+    color:white;
+}
+
+.level-node--locked .level-node__circle{
+    background:#ddd;
+    color:#777;
+}
+
+.level-node__content h4{
+    font-size:14px;
+    margin-bottom:4px;
+}
+
+.level-node__content span{
+    font-size:12px;
+    color:var(--text-muted);
+}
+
+@keyframes level-bar-shine {
+    100% { left: 100%; }
+}
+
+/* ===========================================================
+   4. LEVEL MATERIALS — SECTION
+   =========================================================== */
+.level-materials {
+    margin-bottom: 32px;
+}
+
+.level-materials__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    padding-bottom: 14px;
+    border-bottom: 2px dashed var(--border);
+}
+
+.level-materials__title {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: var(--font-heading);
+    font-size: 20px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+}
+
+.level-materials__title-icon {
+    font-size: 22px;
+}
+
+.level-materials__count {
+    background: rgba(119, 85, 55, 0.12);
+    color: var(--primary);
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.level-materials__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+}
+
+.level-materials__empty {
+    grid-column: 1 / -1;
+    background: var(--bg-card);
+    border: 2px dashed var(--border);
+    border-radius: 20px;
+    padding: 48px 20px;
+    text-align: center;
+}
+
+.level-materials__empty-icon {
+    font-size: 48px;
+    margin-bottom: 12px;
+}
+
+.level-materials__empty-text {
+    color: var(--text-muted);
+    font-size: 14px;
+}
+
+/* ===========================================================
+   5. MATERIAL CARD
+   =========================================================== */
+.level-material-card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    background: var(--bg-card);
+    border: 2px solid var(--border);
+    border-radius: 18px;
+    padding: 22px;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    overflow: hidden;
+}
+
+.level-material-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 30px rgba(92, 51, 23, 0.18);
+    border-color: var(--primary-light);
+}
+
+.level-material-card--completed {
+    border-color: var(--accent-green);
+    background: linear-gradient(135deg, var(--bg-card) 0%, rgba(138, 154, 102, 0.08) 100%);
+}
+
+.level-material-card--completed:hover {
+    border-color: var(--accent-green);
+    box-shadow: 0 12px 30px rgba(138, 154, 102, 0.25);
+}
+
+/* Ribbon */
+.level-material-card__ribbon {
+    position: absolute;
+    top: 14px;
+    right: -28px;
+    transform: rotate(45deg);
+    background: var(--accent-green);
+    color: white;
+    font-size: 11px;
+    font-weight: 700;
+    width: 90px;
+    text-align: center;
+    padding: 3px 0;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.15);
+}
+
+/* Top */
+.level-material-card__top {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+}
+
+.level-material-card__number-wrap {
+    flex-shrink: 0;
+}
+
+.level-material-card__number {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    background: rgba(119, 85, 55, 0.12);
+    color: var(--primary);
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.level-material-card--completed .level-material-card__number {
+    background: var(--accent-green);
+    color: white;
+}
+
+.level-material-card__title-wrap {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.level-material-card__title {
+    font-family: var(--font-heading);
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--text-dark);
+    margin: 0;
+    line-height: 1.3;
+}
+
+.level-material-card__status {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--accent-green);
+}
+
+.level-material-card__status--pending {
+    color: var(--text-muted);
+}
+
+/* Description */
+.level-material-card__desc {
+    font-size: 13px;
+    color: var(--text-muted);
+    line-height: 1.6;
+    margin: 0;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+/* Footer */
+.level-material-card__footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 14px;
+    border-top: 1px dashed var(--border);
+    margin-top: auto;
+}
+
+.level-material-card__questions {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 12px;
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.level-material-card__questions i {
+    color: var(--accent-gold);
+}
+
+.level-material-card__action {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--primary);
+    transition: all 0.2s ease;
+}
+
+.level-material-card:hover .level-material-card__action {
+    color: var(--primary-dark);
+    gap: 10px;
+}
+
+/* ===========================================================
+   6. FINAL CHALLENGE
+   =========================================================== */
+.final-challenge {
+    position: relative;
+    background: linear-gradient(135deg, #775537 0%, #8B6B47 50%, #5C3317 100%);
+    border: 2px solid var(--accent-gold);
+    border-radius: 24px;
+    padding: 36px;
+    margin-bottom: 32px;
+    box-shadow: 0 12px 40px rgba(119, 85, 55, 0.35);
+    overflow: hidden;
+}
+
+.final-challenge__glow {
+    position: absolute;
+    top: -50%;
+    right: -20%;
+    width: 400px;
+    height: 400px;
+    background: radial-gradient(circle, rgba(201, 169, 97, 0.3) 0%, transparent 70%);
+    pointer-events: none;
+    animation: final-glow 3s ease-in-out infinite;
+}
+
+@keyframes final-glow {
+    0%, 100% { opacity: 0.6; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.1); }
+}
+
+.final-challenge__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 32px;
+    align-items: center;
+}
+
+.final-challenge__info {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.final-challenge__badge {
+    display: inline-flex;
+    align-items: center;
+    align-self: flex-start;
+    gap: 6px;
+    padding: 6px 14px;
+    background: var(--accent-gold);
+    color: var(--text-dark);
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 800;
+    letter-spacing: 1px;
+    box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4);
+    animation: final-badge-pulse 2s infinite;
+}
+
+@keyframes final-badge-pulse {
+    0%, 100% { box-shadow: 0 4px 12px rgba(201, 169, 97, 0.4); }
+    50% { box-shadow: 0 4px 20px rgba(201, 169, 97, 0.8); }
+}
+
+.final-challenge__title {
+    font-family: var(--font-heading);
+    font-size: 24px;
+    font-weight: 700;
+    color: #FFFFFF !important;
+    margin: 0;
+}
+
+.final-challenge__desc {
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.85);
+    line-height: 1.5;
+    max-width: 480px;
+}
+
+.final-challenge__attempt {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-top: 10px;
+    padding: 12px 16px;
+    background: rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 14px;
+    backdrop-filter: blur(6px);
+    align-self: flex-start;
+}
+
+.final-challenge__attempt-icon {
+    font-size: 22px;
+}
+
+.final-challenge__attempt-info {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.final-challenge__attempt-label {
+    font-size: 11px;
+    color: rgba(255, 255, 255, 0.7);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.final-challenge__attempt-score {
+    font-size: 15px;
+    font-weight: 700;
+    color: #FFFFFF;
+}
+
+.final-challenge__attempt-status {
+    font-size: 13px;
+    font-weight: 600;
+    opacity: 0.9;
+}
+
+.final-challenge__action {
+    display: flex;
+    gap: 12px;
+}
+
+.final-challenge__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 14px 28px;
+    border-radius: 14px;
+    font-size: 15px;
+    font-weight: 700;
+    text-decoration: none !important;
+    transition: all 0.3s ease;
+    white-space: nowrap;
+}
+
+.final-challenge__btn--primary {
+    background: var(--accent-gold);
+    color: var(--text-dark) !important;
+    box-shadow: 0 6px 20px rgba(201, 169, 97, 0.4);
+}
+
+.final-challenge__btn--primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(201, 169, 97, 0.6);
+}
+
+.final-challenge__btn--success {
+    background: var(--accent-green);
+    color: #FFFFFF !important;
+    box-shadow: 0 6px 20px rgba(138, 154, 102, 0.4);
+}
+
+.final-challenge__btn--success:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(138, 154, 102, 0.6);
+}
+
+/* ===========================================================
+   7. LEVEL FOOTER
+   =========================================================== */
+.level-footer {
+    text-align: center;
+    padding-top: 16px;
+}
+
+.level-footer__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: all 0.2s ease;
+    padding: 8px 16px;
+    border-radius: 10px;
+}
+
+.level-footer__link:hover {
+    color: var(--primary);
+    background: rgba(119, 85, 55, 0.08);
+    transform: translateX(-3px);
+}
+
+/* ===========================================================
+   8. RESPONSIVE
+   =========================================================== */
+@media (max-width: 768px) {
+    .level-page {
+        padding: 16px 12px 32px;
+    }
+
+    .level-hero {
+        padding: 24px 20px;
+    }
+
+    .level-hero__content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 24px;
+    }
+
+    .level-hero__info {
+        align-items: center;
+    }
+
+    .level-hero__eyebrow {
+        align-self: center;
+    }
+
+    .level-hero__title {
+        font-size: 24px;
+    }
+
+    .level-hero__desc {
+        font-size: 13px;
+    }
+
+    .level-hero__meta {
+        justify-content: center;
+    }
+
+    .level-hero__progress-ring {
+        width: 90px;
+        height: 90px;
+    }
+
+    .level-hero__progress-ring-value {
+        font-size: 22px;
+    }
+
+    .level-materials__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .final-challenge {
+        padding: 24px 20px;
+    }
+
+    .final-challenge__content {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 20px;
+    }
+
+    .final-challenge__info {
+        align-items: center;
+    }
+
+    .final-challenge__badge {
+        align-self: center;
+    }
+
+    .final-challenge__title {
+        font-size: 20px;
+    }
+
+    .final-challenge__attempt {
+        align-self: center;
+    }
+
+    .final-challenge__btn {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .level-hero__title {
+        font-size: 20px;
+    }
+
+    .level-material-card {
+        padding: 18px;
+    }
+
+    .level-material-card__title {
+        font-size: 15px;
+    }
+
+    .level-material-card__number {
+        width: 36px;
+        height: 36px;
+        font-size: 14px;
+    }
+
+    .level-material-card__footer {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .level-material-card__action {
+        align-self: flex-end;
+    }
+}
+
+/* ===========================================================
+   9. ACCESSIBILITY
+   =========================================================== */
+@media (prefers-reduced-motion: reduce) {
+    .level-hero__bar-shine,
+    .final-challenge__glow,
+    .final-challenge__badge {
+        animation: none !important;
+    }
+
+    .level-material-card:hover,
+    .final-challenge__btn:hover,
+    .level-footer__link:hover,
+    .level-breadcrumb__link:hover {
+        transform: none !important;
+    }
+}
