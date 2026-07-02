@@ -34,7 +34,7 @@ Route::post('/login', function (Request $request) {
             : redirect('/learning/dashboard');
     }
     return back()->withErrors(['email' => 'Email atau password salah']);
-})->name('login')->middleware('guest');
+})->name('login.submit')->middleware('guest');
 
 // Register
 Route::get('/register', fn() => view('auth.register'))->name('register')->middleware('guest');
@@ -62,7 +62,7 @@ Route::post('/register', function (Request $request) {
     
     Auth::login($user);
     return redirect('/placement-test');
-})->name('register')->middleware('guest');
+})->name('register.submit')->middleware('guest');
 
 // Logout
 Route::post('/logout', function (Request $request) {

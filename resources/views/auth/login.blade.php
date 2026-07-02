@@ -148,7 +148,7 @@
             @endif
 
             {{-- Login Form --}}
-            <form method="POST" action="{{ route('login') }}" class="login-form" autocomplete="on">
+            <form method="POST" action="{{ route('login.submit') }}" class="login-form" autocomplete="on">
                 @csrf
 
                 {{-- Email Field --}}
