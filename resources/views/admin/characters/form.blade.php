@@ -3,7 +3,7 @@
 
 @section('content')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/admin-character-form.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/admin-character-form.css') }}">
 @endpush
 
 @php

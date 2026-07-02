@@ -4,7 +4,7 @@
 
 @section('content')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/profile-edit.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/profile-edit.css') }}">
 <style>
     #sidebar { display: none !important; }
     .flex.h-screen { overflow: hidden; }

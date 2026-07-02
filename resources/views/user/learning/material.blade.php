@@ -8,8 +8,8 @@
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&family=Cinzel:wght@700&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/material.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/theme.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/material.css') }}">
     
     @stack('styles')
 </head>

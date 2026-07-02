@@ -92,7 +92,7 @@
                     </td>
                     <td style="padding: 14px 16px; text-align: center;">
                         @if($q->pdf_file)
-                        <a href="{{ asset('storage/'.$q->pdf_file) }}" target="_blank" style="color: var(--accent-terracotta); text-decoration: none; font-weight: 500;">
+                        <a href="{{ secure_asset('storage/'.$q->pdf_file) }}" target="_blank" style="color: var(--accent-terracotta); text-decoration: none; font-weight: 500;">
                             <i class="fas fa-file-pdf"></i>
                         </a>
                         @else

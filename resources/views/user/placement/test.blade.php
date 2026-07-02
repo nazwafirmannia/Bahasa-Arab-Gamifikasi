@@ -3,7 +3,7 @@
 
 @section('content')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/placement.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/placement.css') }}">
 @endpush
 
 <div class="placement-page">

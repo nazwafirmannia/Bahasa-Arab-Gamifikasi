@@ -74,7 +74,7 @@
                 <input type="file" name="pdf_file" accept=".pdf" style="width: 100%; padding: 8px; border: 1px solid var(--border); border-radius: 6px; background: white; box-sizing: border-box;">
                 @if(isset($question) && $question->pdf_file)
                 <div style="margin-top: 8px; font-size: 0.85rem; color: var(--text-muted);">
-                    <i class="fas fa-file-pdf" style="color: #dc2626;"></i> File saat ini: <a href="{{ asset('storage/'.$question->pdf_file) }}" target="_blank" style="color: var(--primary);">{{ basename($question->pdf_file) }}</a>
+                    <i class="fas fa-file-pdf" style="color: #dc2626;"></i> File saat ini: <a href="{{ secure_asset('storage/'.$question->pdf_file) }}" target="_blank" style="color: var(--primary);">{{ basename($question->pdf_file) }}</a>
                 </div>
                 @endif
             </div>

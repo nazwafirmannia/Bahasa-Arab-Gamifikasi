@@ -65,13 +65,13 @@
                     </td>
                     <td style="padding: 14px 16px; text-align: center;">
                         <div style="display: flex; justify-content: center; gap: 12px;">
-                            <a href="{{ $mat->vocab_file ? asset('storage/'.$mat->vocab_file) : '#' }}" target="{{ $mat->vocab_file ? '_blank' : '' }}" style="color: {{ $mat->vocab_file ? 'var(--accent-green)' : 'var(--text-muted)' }}; text-decoration: none;" title="Vocab">
+                            <a href="{{ $mat->vocab_file ? secure_asset('storage/'.$mat->vocab_file) : '#' }}" target="{{ $mat->vocab_file ? '_blank' : '' }}" style="color: {{ $mat->vocab_file ? 'var(--accent-green)' : 'var(--text-muted)' }}; text-decoration: none;" title="Vocab">
                                 <i class="fas fa-file-alt"></i>
                             </a>
-                            <a href="{{ $mat->grammar_file ? asset('storage/'.$mat->grammar_file) : '#' }}" target="{{ $mat->grammar_file ? '_blank' : '' }}" style="color: {{ $mat->grammar_file ? 'var(--accent-teal)' : 'var(--text-muted)' }}; text-decoration: none;" title="Grammar">
+                            <a href="{{ $mat->grammar_file ? secure_asset('storage/'.$mat->grammar_file) : '#' }}" target="{{ $mat->grammar_file ? '_blank' : '' }}" style="color: {{ $mat->grammar_file ? 'var(--accent-teal)' : 'var(--text-muted)' }}; text-decoration: none;" title="Grammar">
                                 <i class="fas fa-file-code"></i>
                             </a>
-                            <a href="{{ $mat->dialog_file ? asset('storage/'.$mat->dialog_file) : '#' }}" target="{{ $mat->dialog_file ? '_blank' : '' }}" style="color: {{ $mat->dialog_file ? 'var(--accent-terracotta)' : 'var(--text-muted)' }}; text-decoration: none;" title="Dialog">
+                            <a href="{{ $mat->dialog_file ? secure_asset('storage/'.$mat->dialog_file) : '#' }}" target="{{ $mat->dialog_file ? '_blank' : '' }}" style="color: {{ $mat->dialog_file ? 'var(--accent-terracotta)' : 'var(--text-muted)' }}; text-decoration: none;" title="Dialog">
                                 <i class="fas fa-comments"></i>
                             </a>
                         </div>

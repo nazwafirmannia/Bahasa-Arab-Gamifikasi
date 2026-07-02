@@ -18,7 +18,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Merriweather:wght@400;700&family=Cinzel:wght@700&family=Amiri:wght@400;700&display=swap" rel="stylesheet">
     
     <!-- ✅ CUSTOM CSS ONLY (NO TAILWIND CDN) -->
-    <link rel="stylesheet" href="{{ asset('css/admin.css') }}">
+    <link rel="stylesheet" href="{{ secure_asset('css/admin.css') }}">
     
     @stack('styles')
 </head>

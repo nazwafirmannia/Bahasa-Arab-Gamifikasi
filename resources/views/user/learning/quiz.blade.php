@@ -3,7 +3,7 @@
 
 @section('content')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/quiz.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/quiz.css') }}">
 <style>
     #sidebar { display: none !important; }
     .flex.h-screen { overflow: hidden; }

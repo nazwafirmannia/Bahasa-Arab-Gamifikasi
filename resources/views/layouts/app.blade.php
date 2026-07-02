@@ -23,7 +23,7 @@
         <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
         
         <!-- 4. ✅ CSS TEMA PUSAT (WAJIB DI-LOAD SETELAH TAILWIND) -->
-        <link rel="stylesheet" href="{{ asset('css/theme.css') }}">
+        <link rel="stylesheet" href="{{ secure_asset('css/theme.css') }}">
         
         @stack('styles')
     </head>

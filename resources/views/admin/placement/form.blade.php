@@ -3,7 +3,7 @@
 
 @section('content')
 @push('styles')
-<link rel="stylesheet" href="{{ asset('css/admin-placement-form.css') }}">
+<link rel="stylesheet" href="{{ secure_asset('css/admin-placement-form.css') }}">
 <link href="https://fonts.googleapis.com/css2?family=Amiri:wght@400;700&display=swap" rel="stylesheet">
 @endpush
 
