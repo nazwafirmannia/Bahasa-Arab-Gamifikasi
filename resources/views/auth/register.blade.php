@@ -192,7 +192,7 @@
             @endif
 
             {{-- Register Form --}}
-            <form method="POST" action="{{ secure_url(route('register.submit', [], false)) }}" class="register-form" autocomplete="on">
+            <form method="POST" action="{{ route('register.submit') }}" class="register-form" autocomplete="on">
                 @csrf
 
                 {{-- Name Field --}}
