@@ -20,9 +20,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
-        // Paksa semua aset (CSS/JS) dan link menggunakan HTTPS jika di server cloud (production)
-        if (env('APP.ENV') !== 'local' || env('APP_URL') !== 'http://localhost') {
-            URL::forceScheme('https');
-        }
+
+        \Illuminate\Support\Facades\URL::forceScheme('https'); // <-- Tambahkan baris ini
     }
 }
