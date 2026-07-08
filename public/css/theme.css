@@ -4,21 +4,21 @@
    =========================================================== */
 
    @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@700&family=Merriweather:wght@400;700&family=Poppins:wght@300;400;500;600;700&display=swap');
-   @import './Dashboard.css';
-   @import './Level.css';
-   @import './Material.css';
-   @import './Practice.css';
-   @import './Practice-Result.css';
-   @import './Quiz.css';
-   @import './Quiz-Result.css';
-   @import './Leaderboard.css';
-   @import './Profile.css';
-   @import './Login.css';
-   @import './Register.css';
-   @import './Landing.css';
-   @import './Placement.css';
-   @import './Placement-Result.css';
-   @import './Admin-Character-Form.css';
+   @import './dashboard.css';
+   @import './level.css';
+   @import './material.css';
+   @import './practice.css';
+   @import './practice-result.css';
+   @import './quiz.css';
+   @import './quiz-result.css';
+   @import './leaderboard.css';
+   @import './profile.css';
+   @import './login.css';
+   @import './register.css';
+   @import './landing.css';
+   @import './placement.css';
+   @import './placement-result.css';
+   @import './admin-character-form.css';
    /* ===========================================================
       1. GLOBAL VARIABLES
       =========================================================== */
