@@ -15,7 +15,10 @@ return Application::configure(basePath: dirname(__DIR__))
             'admin' => \App\Http\Middleware\AdminMiddleware::class,
             'placement.completed' => \App\Http\Middleware\PlacementCompleted::class,
         ]);
+
+        $middleware->trustProxies(at: '*');
     })
+    
     ->withExceptions(function (Exceptions $exceptions): void {
         //
     })->create();
