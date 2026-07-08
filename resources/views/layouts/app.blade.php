@@ -120,8 +120,8 @@ class="sidebar fixed lg:relative top-0 left-0 h-screen w-64 overflow-y-auto bg-p
                 
                         <img
                             src="{{ $avatar
-                                    ? ('storage/'.$avatar->image)
-                                    : ('images/default-avatar.png') }}"
+                                    ? asset('images/characters/'.$avatar->image)
+                                    : assset('images/default-avatar.png') }}"
                             class="w-10 h-10 rounded-full border-2 border-accent-yellow shadow-md"
                             alt="Avatar">
                 
