@@ -154,7 +154,7 @@
                 <img src="{{ $imgSrc }}" 
                      alt="{{ $char->name }}" 
                      class="avatar-card__image"
-                     onerror="this.onerror=null; this.src='https://ui-avatars.com/api/?name={{ urlencode($char->name) }}&background=775537&color=FBE29C&size=256'">
+                     onerror="this.onerror=null; this.src='https://ui-avatars.com{{ urlencode($char->name) }}&background=775537&color=FBE29C&size=256'">
                 
                 {{-- Level Badge --}}
                 <div class="avatar-card__level-badge">
