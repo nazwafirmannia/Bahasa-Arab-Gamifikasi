@@ -143,9 +143,9 @@
          AVATAR GRID
     ============================================ --}}
     <div class="avatar-grid">
-        @forelse($characters as $char)
+        @forelse($characters as $key => $char)
         @php
-            $imgSrc = asset('images/characters/' . ($char->level_id ?? 1) . '.jpg'); 
+            $imgSrc = asset('images/characters/' . ($key + 1) . '.jpg'); 
         @endphp
 
         <div class="avatar-card {{ $char->is_active ? 'avatar-card--active' : 'avatar-card--inactive' }}">
