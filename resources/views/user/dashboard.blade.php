@@ -14,10 +14,8 @@
             <div class="hero-learning__avatar">
     
                 <img
-                    src="{{ $currentCharacter
-                            ? asset('storage/'.$currentCharacter->image)
-                            : asset('images/default-avatar.png') }}"
-                    alt="{{ $currentCharacter?->name ?? 'Character' }}">
+                    src="{{ asset('images/characters/'. (Auth:user()->level ?? 1) . '.jpg') }}"
+                    alt="{{ $currentCharacter ? $currentCharacter->name : 'Character' }}">
     
             </div>
             <div class="hero-learning__level-badge">
