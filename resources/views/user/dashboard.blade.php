@@ -14,7 +14,7 @@
             <div class="hero-learning__avatar">
     
                 <img
-                    src="{{ asset('images/characters/'. (Auth:user()->level ?? 1) . '.jpg') }}"
+                    src="{{ asset('images/characters/'. (Auth::user()->level ?? 1) . '.jpg') }}"
                     alt="{{ $currentCharacter ? $currentCharacter->name : 'Character' }}">
     
             </div>
