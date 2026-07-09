@@ -320,17 +320,21 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             // Create or update image
-            if (!previewImage) {
-                const img = document.createElement('img');
-                img.id = 'previewImage';
-                img.className = 'preview-image__img';
-                img.src = e.target.result;
-                img.alt = 'Preview';
-                previewImageContainer.appendChild(img);
-            } else {
-                previewImage.src = e.target.result;
-                previewImage.style.display = 'block';
-            }
+// ... kode di atasnya tetap sama
+
+if (previewImage) {
+    previewImage.src = e.target.result;
+} else {
+    // Create or update image
+    const img = document.createElement('img');
+    img.id = 'previewImage';
+    img.className = 'preview-image__img';
+    img.src = e.target.result; // -> SEBELUMNYA TYPO 'previewImage.src'
+    img.alt = 'Preview';       // -> SEBELUMNYA TYPO 'previewImage.alt'
+    
+    previewImageContainer.appendChild(img);
+    previewImageContainer.style.display = 'block';
+}
         };
         reader.readAsDataURL(file);
     }
