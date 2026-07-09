@@ -145,9 +145,7 @@
     <div class="avatar-grid">
         @forelse($characters as $char)
         @php
-            $imgSrc = $char->image 
-                ? (filter_var($char->image, FILTER_VALIDATE_URL) ? $char->image : asset('storage/'.$char->image))
-                : 'https://ui-avatars.com/api/?name='.urlencode($char->name).'&background=775537&color=FBE29C&size=256';
+            $imgSrc = asset('images/characters/' . $char->id . '.jpg'); 
         @endphp
         <div class="avatar-card {{ $char->is_active ? 'avatar-card--active' : 'avatar-card--inactive' }}">
             

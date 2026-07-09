@@ -161,7 +161,7 @@
                     @if($existingImage)
                     <div class="character-form-upload__current">
                         <span class="character-form-upload__current-label">Gambar saat ini:</span>
-                        <img src="{{ $existingImage }}" 
+                        <img src="{{ asset('images/characters/' . $character->id . '.jpg') }}" 
                              alt="{{ $character->name ?? 'Current avatar' }}" 
                              class="character-form-upload__current-image"
                              id="existingImagePreview">
@@ -220,7 +220,7 @@
                     {{-- Image Preview --}}
                     <div class="preview-image" id="previewImageContainer">
                         @if($existingImage)
-                            <img src="{{ $existingImage }}" 
+                        <img src="{{ asset('images/characters/' . $character->id . '.jpg') }}" 
                                  alt="Preview" 
                                  class="preview-image__img" 
                                  id="previewImage">
