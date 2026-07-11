@@ -83,53 +83,54 @@ public function updateStreak(): array
         return $result;
     }
     
-    // Tambah streak jika ada aktivitas belajar pada hari berbeda
-    if (!$last->isSameDay(now())) {
-        $this->increment('streak');
-        $this->refresh();
+   // Tambah streak jika ada aktivitas belajar pada hari berbeda
+   if (!$last->isSameDay(now())) {
 
-        $this->update([
-            'last_activity' => now(),
-            'reminder_sent_at' => null
-        ]);
+    // 🛠️ PERBAIKAN: Naikkan angka secara manual & aman tanpa perintah increment()
+    $this->streak = (int)$this->streak + 1;
+    $this->last_activity = now();
+    $this->reminder_sent_at = null;
+    
+    // Langsung simpan perubahan objek ke database Railway
+    $this->save();
 
-        $result['updated'] = true;
+    $result['updated'] = true;
 
-        // 🎁 Bonus Milestone
-        $milestones = [
-            3  => ['xp' => 30,  'msg' => '🔥 Streak 3 Hari!'],
-            7  => ['xp' => 100, 'msg' => '🔥 Streak 1 Minggu!'],
-            14 => ['xp' => 200, 'msg' => '🔥 Streak 2 Minggu!'],
-            30 => ['xp' => 500, 'msg' => '🔥 Streak 1 Bulan!'],
-        ];
+    // 🎁 Bonus Milestone
+    $milestones = [
+        3  => ['xp' => 30,  'msg' => '🔥 Streak 3 Hari!'],
+        7  => ['xp' => 100, 'msg' => '🔥 Streak 1 Minggu!'],
+        14 => ['xp' => 200, 'msg' => '🔥 Streak 2 Minggu!'],
+        30 => ['xp' => 500, 'msg' => '🔥 Streak 1 Bulan!'],
+    ];
 
-        if (isset($milestones[$this->streak])) {
-            $bonus = $milestones[$this->streak];
-            $this->addXp($bonus['xp']);
-            $user = $this->user;
+    if (isset($milestones[$this->streak])) {
+        $bonus = $milestones[$this->streak];
+        $this->addXp($bonus['xp']);
+        $user = $this->user;
 
-            if ($user) {
-                \App\Models\XpLog::create([
-                    'id_user' => $user->id_user,
-                    'amount' => $bonus['xp'],
-                    'source' => 'streak_milestone',
-                    'reference_id' => null
-                ]);
-            }
-
-            $result['bonus'] = [
-                'msg' => $bonus['msg'],
-                'xp' => $bonus['xp'],
-            ];
+        if ($user) {
+            \App\Models\XpLog::create([
+                'id_user' => $user->id_user,
+                'amount' => $bonus['xp'],
+                'source' => 'streak_milestone',
+                'reference_id' => null
+            ]);
         }
-    }
-    else {
-        $this->update([
-            'last_activity' => now(),
-            'reminder_sent_at' => null
-        ]);
-    }
 
-    return $result;
+        $result['bonus'] = [
+            'msg' => $bonus['msg'],
+            'xp' => $bonus['xp'],
+        ];
+    }
+}
+else {
+    // Jika di hari yang sama, cukup perbarui waktu aktivitas terakhirnya saja
+    $this->last_activity = now();
+    $this->reminder_sent_at = null;
+    $this->save();
+}
+
+return $result;
 }
 }
