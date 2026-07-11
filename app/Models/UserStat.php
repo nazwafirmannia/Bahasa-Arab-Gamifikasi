@@ -55,50 +55,47 @@ class UserStat extends Model
 public function updateStreak(): array
 {
     $result = ['updated' => false, 'bonus' => null];
-    $last = $this->last_activity;
     
-// Aktivitas belajar pertama kali
-if (!$last) {
-
-    $this->update([
-        'streak' => 1,
-        'last_activity' => now(),
-        'reminder_sent_at' => null
-    ]);
-
-    $result['updated'] = true;
-
-    return $result;
-}
-
-// Streak putus jika tidak ada aktivitas belajar >48 jam
-if ($last->diffInDays(now()) >= 2) {
-
-    $this->update([
-        'streak' => 1,
-        'last_activity' => now(),
-        'reminder_sent_at' => null
-    ]);
-
-    $result['updated'] = true;
-
-    return $result;
-}
+    // 🛠️ PERBAIKAN DI SINI: Paksa string dari DB menjadi Objek Carbon resmi Laravel
+    $last = $this->last_activity ? \Carbon\Carbon::parse($this->last_activity) : null;
     
-// Tambah streak jika ada aktivitas belajar pada hari berbeda
-if (!$last->isSameDay(now())) {
+    // Aktivitas belajar pertama kali
+    if (!$last) {
+        $this->update([
+            'streak' => 1,
+            'last_activity' => now(),
+            'reminder_sent_at' => null
+        ]);
 
-    $this->increment('streak');
-    $this->refresh();
+        $result['updated'] = true;
+        return $result;
+    }
 
-    $this->update([
-        'last_activity' => now(),
-        'reminder_sent_at' => null
-    ]);
+    // Streak putus jika tidak ada aktivitas belajar >48 jam
+    if ($last->diffInDays(now()) >= 2) {
+        $this->update([
+            'streak' => 1,
+            'last_activity' => now(),
+            'reminder_sent_at' => null
+        ]);
 
-    $result['updated'] = true;
+        $result['updated'] = true;
+        return $result;
+    }
+    
+    // Tambah streak jika ada aktivitas belajar pada hari berbeda
+    if (!$last->isSameDay(now())) {
+        $this->increment('streak');
+        $this->refresh();
 
-    // 🎁 Bonus Milestone
+        $this->update([
+            'last_activity' => now(),
+            'reminder_sent_at' => null
+        ]);
+
+        $result['updated'] = true;
+
+        // 🎁 Bonus Milestone
         $milestones = [
             3  => ['xp' => 30,  'msg' => '🔥 Streak 3 Hari!'],
             7  => ['xp' => 100, 'msg' => '🔥 Streak 1 Minggu!'],
@@ -106,41 +103,33 @@ if (!$last->isSameDay(now())) {
             30 => ['xp' => 500, 'msg' => '🔥 Streak 1 Bulan!'],
         ];
 
-    if (isset($milestones[$this->streak])) {
+        if (isset($milestones[$this->streak])) {
+            $bonus = $milestones[$this->streak];
+            $this->addXp($bonus['xp']);
+            $user = $this->user;
 
-        $bonus = $milestones[$this->streak];
+            if ($user) {
+                \App\Models\XpLog::create([
+                    'id_user' => $user->id_user,
+                    'amount' => $bonus['xp'],
+                    'source' => 'streak_milestone',
+                    'reference_id' => null
+                ]);
+            }
 
-        $this->addXp($bonus['xp']);
-
-
-        $user = $this->user;
-
-        if ($user) {
-
-            \App\Models\XpLog::create([
-                'id_user' => $user->id_user,
-                'amount' => $bonus['xp'],
-                'source' => 'streak_milestone',
-                'reference_id' => null
-            ]);
+            $result['bonus'] = [
+                'msg' => $bonus['msg'],
+                'xp' => $bonus['xp'],
+            ];
         }
-
-        $result['bonus'] = [
-            'msg' => $bonus['msg'],
-            'xp' => $bonus['xp'],
-        ];
+    }
+    else {
+        $this->update([
+            'last_activity' => now(),
+            'reminder_sent_at' => null
+        ]);
     }
 
-}
-else {
-
-    $this->update([
-        'last_activity' => now(),
-        'reminder_sent_at' => null
-    ]);
-
-}
-
-return $result;
+    return $result;
 }
 }
