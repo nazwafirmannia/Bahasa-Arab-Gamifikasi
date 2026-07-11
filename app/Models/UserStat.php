@@ -49,6 +49,9 @@ class UserStat extends Model
     public function addXp(int $amount): void
     {
         $this->increment('xp_total', $amount);
+    
+        // Sinkronkan object dengan database
+        $this->refresh();
     }
 
 // ===== STREAK LOGIC (OPTIMIZED) =====
@@ -57,7 +60,7 @@ public function updateStreak(): array
     $result = ['updated' => false, 'bonus' => null];
     
     // 🛠️ PERBAIKAN DI SINI: Paksa string dari DB menjadi Objek Carbon resmi Laravel
-    $last = $this->last_activity ? \Carbon\Carbon::parse($this->last_activity) : null;
+    $last = $this->last_activity;
     
     // Aktivitas belajar pertama kali
     if (!$last) {
