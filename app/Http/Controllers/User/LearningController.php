@@ -347,16 +347,17 @@ public function completeMaterial($materialId)
     
     // ✅ Berikan reward HANYA jika first attempt
     if ($isFirstAttempt && ($totalXp > 0)) {
-        if ($totalXp > 0) {
-            $stat = \App\Models\UserStat::where('id_user', $user->id_user)
+
+        $stat = \App\Models\UserStat::where('id_user', $user->id_user)
             ->lockForUpdate()
             ->first();
-        
+    
         $stat->addXp($totalXp);
-        
+    
         $stat->refresh();
-        
+    
         $stat->updateStreak();
+    
     }
 
     $badges = \App\Services\BadgeChecker::checkAndAward($user);
