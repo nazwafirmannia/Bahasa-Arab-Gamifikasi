@@ -186,14 +186,14 @@ public function dashboard()
         
         return view('user.learning.material', compact('material', 'level', 'isCompleted'));
     }
-
-// ✅ COMPLETE MATERIAL (FIXED - NO BADGE CHECKER)
+    
+// ✅ COMPLETE MATERIAL (FIXED & OPTIMIZED FOR RAILWAY)
 public function completeMaterial($materialId)
 {
     $user = Auth::user();
     $material = Material::findOrFail($materialId);
     
-    // Catat progress
+    // Catat progress (Gunakan id_user langsung dari objek user)
     DB::table('user_material_progress')->updateOrInsert(
         ['id_user' => $user->id_user, 'id_material' => $materialId],
         ['is_selesai' => true, 'completed_at' => now()]
@@ -207,8 +207,26 @@ public function completeMaterial($materialId)
     
     try {
         DB::transaction(function() use ($user, $reward, $material) {
-            $user->stat->addXp($reward['xp']);
             
+            // 🛠️ PERBAIKAN UTAMA: Cek jika data user_stat belum dibuat di database Railway
+            $stat = $user->stat;
+            if (!$stat) {
+                $stat = \App\Models\UserStat::create([
+                    'id_user'          => $user->id_user,
+                    'xp_total'         => 0,
+                    'streak'           => 0,
+                    'current_level'    => 1,
+                    'last_activity'    => null,
+                ]);
+                // Muat ulang relasi agar Laravel mengenali data stat yang baru dibuat
+                $user->load('stat');
+                $stat = $user->stat;
+            }
+
+            // Tambahkan XP ke statistik user
+            $stat->addXp($reward['xp']);
+            
+            // Catat log histori XP
             \App\Models\XpLog::create([
                 'id_user' => $user->id_user,
                 'amount' => $reward['xp'],
@@ -216,7 +234,8 @@ public function completeMaterial($materialId)
                 'reference_id' => $material->id_material
             ]);
             
-            $user->stat->updateStreak();
+            // Jalankan fungsi update streak harian
+            $stat->updateStreak();
         });
         
         // ✅ HAPUS BadgeChecker & NotificationService SEMENTARA
@@ -231,7 +250,6 @@ public function completeMaterial($materialId)
 
         $badgePopup = null;
         if(count($badges) > 0){
-        
             $badgePopup = [
                 'name' => $badges[0]->name,
                 'icon' => $badges[0]->icon
@@ -245,8 +263,9 @@ public function completeMaterial($materialId)
             ->with('badge_popup', $badgePopup);
         
     } catch (\Exception $e) {
+        // Mencatat detail eror asli ke file log server Railway untuk pelacakan
         \Log::error('Error in completeMaterial: ' . $e->getMessage());
-        return back()->with('error', 'Terjadi kesalahan. Coba lagi.');
+        return back()->with('error', 'Terjadi kesalahan sistem. Sila coba lagi.');
     }
 }
 
