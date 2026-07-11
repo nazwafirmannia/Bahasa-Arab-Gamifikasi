@@ -57,83 +57,86 @@ class UserStat extends Model
 // ===== STREAK LOGIC (OPTIMIZED) =====
 public function updateStreak(): array
 {
-    $result = ['updated' => false, 'bonus' => null];
-    
-    // 🛠️ PERBAIKAN DI SINI: Paksa string dari DB menjadi Objek Carbon resmi Laravel
+    $result = [
+        'updated' => false,
+        'bonus' => null
+    ];
+
+    $this->refresh();
+
     $last = $this->last_activity;
-    
-    // Aktivitas belajar pertama kali
-    if (!$last) {
-        $this->update([
-            'streak' => 1,
-            'last_activity' => now(),
-            'reminder_sent_at' => null
-        ]);
+
+    // Aktivitas pertama
+    if (is_null($last)) {
+
+        $this->streak = 1;
+        $this->last_activity = now();
+        $this->reminder_sent_at = null;
+        $this->save();
 
         $result['updated'] = true;
         return $result;
     }
 
-    // Streak putus jika tidak ada aktivitas belajar >48 jam
-    if ($last->diffInDays(now()) >= 2) {
-        $this->update([
-            'streak' => 1,
-            'last_activity' => now(),
-            'reminder_sent_at' => null
-        ]);
+    // Hitung selisih hari
+    $days = $last->copy()->startOfDay()->diffInDays(now()->copy()->startOfDay());
 
-        $result['updated'] = true;
+    // Hari yang sama
+    if ($days == 0) {
+
+        $this->last_activity = now();
+        $this->reminder_sent_at = null;
+        $this->save();
+
         return $result;
     }
-    
-   // Tambah streak jika ada aktivitas belajar pada hari berbeda
-   if (!$last->isSameDay(now())) {
 
-    // 🛠️ PERBAIKAN: Naikkan angka secara manual & aman tanpa perintah increment()
-    $this->streak = (int)$this->streak + 1;
+    // Lewat 2 hari atau lebih
+    if ($days >= 2) {
+
+        $this->streak = 1;
+    }
+    // Besoknya
+    else {
+
+        $this->streak += 1;
+    }
+
     $this->last_activity = now();
     $this->reminder_sent_at = null;
-    
-    // Langsung simpan perubahan objek ke database Railway
     $this->save();
 
     $result['updated'] = true;
 
-    // 🎁 Bonus Milestone
     $milestones = [
-        3  => ['xp' => 30,  'msg' => '🔥 Streak 3 Hari!'],
+        3  => ['xp' => 30, 'msg' => '🔥 Streak 3 Hari!'],
         7  => ['xp' => 100, 'msg' => '🔥 Streak 1 Minggu!'],
         14 => ['xp' => 200, 'msg' => '🔥 Streak 2 Minggu!'],
         30 => ['xp' => 500, 'msg' => '🔥 Streak 1 Bulan!'],
     ];
 
     if (isset($milestones[$this->streak])) {
-        $bonus = $milestones[$this->streak];
-        $this->addXp($bonus['xp']);
-        $user = $this->user;
 
-        if ($user) {
+        $bonus = $milestones[$this->streak];
+
+        $this->addXp($bonus['xp']);
+
+        if ($this->user) {
+
             \App\Models\XpLog::create([
-                'id_user' => $user->id_user,
+                'id_user' => $this->user->id_user,
                 'amount' => $bonus['xp'],
                 'source' => 'streak_milestone',
-                'reference_id' => null
+                'reference_id' => null,
             ]);
         }
 
         $result['bonus'] = [
             'msg' => $bonus['msg'],
-            'xp' => $bonus['xp'],
+            'xp' => $bonus['xp']
         ];
     }
-}
-else {
-    // Jika di hari yang sama, cukup perbarui waktu aktivitas terakhirnya saja
-    $this->last_activity = now();
-    $this->reminder_sent_at = null;
-    $this->save();
-}
 
-return $result;
+    return $result;
 }
 }
