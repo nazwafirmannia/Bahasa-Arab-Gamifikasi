@@ -59,20 +59,16 @@ public function updateStreak(): array
 {
     $result = [
         'updated' => false,
-        'bonus' => null
+        'bonus' => null,
     ];
 
     $this->refresh();
 
-    \Log::info('UPDATE STREAK START', [
-        'user' => $this->id_user,
-        'last_activity' => $this->last_activity,
-        'now' => now(),
-    ]);
-
     $last = $this->last_activity;
 
+    // ==========================
     // Aktivitas pertama
+    // ==========================
     if (is_null($last)) {
 
         $this->streak = 1;
@@ -81,44 +77,60 @@ public function updateStreak(): array
         $this->save();
 
         $result['updated'] = true;
-        return $result;
-    }
 
-    // Hitung selisih hari
-    $days = $last->copy()->startOfDay()->diffInDays(now()->copy()->startOfDay());
+    } else {
 
-    // Hari yang sama
-    if ($days == 0) {
+        $days = $last->copy()->startOfDay()->diffInDays(now()->copy()->startOfDay());
+
+        // ==========================
+        // Hari yang sama
+        // ==========================
+        if ($days == 0) {
+
+            // Jika hari ini belum pernah mendapat streak
+            if ($this->streak == 0) {
+                $this->streak = 1;
+                $result['updated'] = true;
+            }
+
+            $this->last_activity = now();
+            $this->reminder_sent_at = null;
+            $this->save();
+
+            return $result;
+        }
+
+        // ==========================
+        // Besoknya
+        // ==========================
+        if ($days == 1) {
+
+            if ($this->streak <= 0) {
+                $this->streak = 1;
+            } else {
+                $this->streak++;
+            }
+
+            $result['updated'] = true;
+        }
+
+        // ==========================
+        // Putus streak
+        // ==========================
+        if ($days >= 2) {
+
+            $this->streak = 1;
+            $result['updated'] = true;
+        }
 
         $this->last_activity = now();
         $this->reminder_sent_at = null;
         $this->save();
-
-        \Log::info('UPDATE STREAK SAVED', [
-            'streak' => $this->streak,
-            'last_activity' => $this->last_activity,
-        ]);
-        
-        return $result;
     }
 
-    // Lewat 2 hari atau lebih
-    if ($days >= 2) {
-
-        $this->streak = 1;
-    }
-    // Besoknya
-    else {
-
-        $this->streak += 1;
-    }
-
-    $this->last_activity = now();
-    $this->reminder_sent_at = null;
-    $this->save();
-
-    $result['updated'] = true;
-
+    // ==========================
+    // Bonus Milestone
+    // ==========================
     $milestones = [
         3  => ['xp' => 30, 'msg' => '🔥 Streak 3 Hari!'],
         7  => ['xp' => 100, 'msg' => '🔥 Streak 1 Minggu!'],
@@ -144,7 +156,7 @@ public function updateStreak(): array
 
         $result['bonus'] = [
             'msg' => $bonus['msg'],
-            'xp' => $bonus['xp']
+            'xp'  => $bonus['xp'],
         ];
     }
 

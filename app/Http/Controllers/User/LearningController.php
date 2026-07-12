@@ -190,6 +190,7 @@ public function dashboard()
 // ✅ COMPLETE MATERIAL (FIXED - NO BADGE CHECKER)
 public function completeMaterial($materialId)
 {
+    \Log::info('COMPLETE MATERIAL MASUK');
     $user = Auth::user();
     $material = Material::findOrFail($materialId);
     
