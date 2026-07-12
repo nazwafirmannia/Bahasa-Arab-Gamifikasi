@@ -6,49 +6,57 @@ use Illuminate\Console\Command;
 use App\Models\User;
 use App\Mail\LearningReminderMail;
 use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Log;
 
 class SendLearningReminder extends Command
 {
     protected $signature = 'reminder:study';
 
-    protected $description = 'Kirim pengingat belajar kepada user yang tidak aktif 3 hari';
+    protected $description = 'Kirim pengingat belajar';
 
     public function handle()
     {
         $users = User::with('stat')
             ->where('role', 'user')
             ->get();
-    
+
         foreach ($users as $user) {
-    
+
             if (!$user->stat) {
                 continue;
             }
-    
-            $lastActivity = $user->stat->last_activity;
-    
-            if (!$lastActivity) {
+
+            if (!$user->stat->last_activity) {
                 continue;
             }
-    
-            if ($lastActivity->diffInDays(now()) >= 3) {
-    
-                if (!$user->stat->reminder_sent_at) {
-    
-                    Mail::to($user->email_user)
-                        ->send(new LearningReminderMail($user));
-    
-                    $user->stat->update([
-                        'reminder_sent_at' => now()
-                    ]);
-    
-                    $this->info(
-                        "Reminder dikirim ke {$user->email_user}"
-                    );
-                }
+
+            if ($user->stat->last_activity->diffInDays(now()) < 3) {
+                continue;
+            }
+
+            try {
+
+                Mail::to($user->email_user)
+                    ->send(new LearningReminderMail($user));
+
+                $user->stat->update([
+                    'reminder_sent_at' => now(),
+                ]);
+
+                $this->info("Berhasil kirim ke {$user->email_user}");
+
+            } catch (\Throwable $e) {
+
+                Log::error('MAIL ERROR', [
+                    'user' => $user->email_user,
+                    'message' => $e->getMessage(),
+                    'trace' => $e->getTraceAsString(),
+                ]);
+
+                $this->error($e->getMessage());
             }
         }
-    
-        return Command::SUCCESS;
+
+        return self::SUCCESS;
     }
 }
