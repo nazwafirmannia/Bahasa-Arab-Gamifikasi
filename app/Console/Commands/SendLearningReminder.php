@@ -29,11 +29,18 @@ class SendLearningReminder extends Command
                 continue;
             }
 
+            $lastActivity = $user->stat->last_activity;
+
+            // Testing: kirim jika tidak aktif 30 detik
+            if ($lastActivity->diffInSeconds(now()) < 30) {
+                continue;
+            }
+
             try {
 
                 $response = Http::withHeaders([
                     'accept' => 'application/json',
-                    'api-key' => env('services.brevo.key'),
+                    'api-key' => env('BREVO_API_KEY'),
                     'content-type' => 'application/json',
                 ])->post('https://api.brevo.com/v3/smtp/email', [
 
