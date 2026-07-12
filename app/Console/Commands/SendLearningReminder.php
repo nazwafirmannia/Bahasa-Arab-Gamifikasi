@@ -31,11 +31,13 @@ class SendLearningReminder extends Command
 
             $lastActivity = $user->stat->last_activity;
 
-            // Testing: kirim jika tidak aktif 30 detik
-            if ($lastActivity->diffInSeconds(now()) < 30) {
-                continue;
-            }
+if ($lastActivity->diffInDays(now()) < 3) {
+    continue;
+}
 
+if ($user->stat->reminder_sent_at) {
+    continue;
+}
             try {
 
                 $response = Http::withHeaders([
@@ -66,22 +68,21 @@ class SendLearningReminder extends Command
 
                 if ($response->successful()) {
 
-                    $user->stat->update([
-                        'reminder_sent_at' => now(),
-                    ]);
-
-                    $this->info("Berhasil kirim ke {$user->email_user}");
-
-                } else {
-
-                    Log::error('BREVO ERROR', [
+                    Log::info('BREVO SUCCESS', [
                         'user' => $user->email_user,
-                        'status' => $response->status(),
-                        'response' => $response->body(),
+                        'response' => $response->json(),
                     ]);
-
+                
+                    $this->info("Berhasil kirim ke {$user->email_user}");
+                
+                } else {
+                
+                    Log::error('BREVO ERROR', [
+                        'status' => $response->status(),
+                        'body' => $response->body(),
+                    ]);
+                
                     $this->error($response->body());
-
                 }
 
             } catch (\Throwable $e) {
