@@ -13,22 +13,12 @@
 </style>
 @endpush
 
-@php
-    $user = Auth::user();
-    $stat = $user->stat;
-    $currentXp = $stat->xp_total ?? 0;
-    $currentLevel = $stat->level ?? 1;
-
     @php
 
 $user = Auth::user();
-
 $stat = $user->stat;
-
 $currentXp = $stat->xp_total ?? 0;
-
 $currentLevel = $stat->current_level ?? 1;
-
 $currentCharacter = \App\Models\Character::where(
         'unlock_level',
         '<=',
@@ -81,10 +71,10 @@ $totalBadges = \App\Models\Badge::where(
                     <div class="profile-edit-hero__avatar">
                         @if($currentCharacter)
 
-<img
-src="{{ Storage::url($currentCharacter->image) }}"
-alt="{{ $currentCharacter->name }}"
-class="profile-edit-hero__avatar-image">
+                        <img
+                        src="{{ asset('images/characters/'.$currentLevel.'.jpg') }}"
+                        alt="{{ $currentCharacter->name }}"
+                        class="profile-edit-hero__avatar-image">
 
 @endif
                     </div>
@@ -176,14 +166,22 @@ class="profile-edit-hero__avatar-image">
                     <div class="profile-edit-evolution">
                         <div class="profile-edit-evolution__current">
                             <div class="profile-edit-evolution__avatar">
-                                <span class="profile-edit-evolution__emoji">{{ $currentAvatar['emoji'] }}</span>
+
+                                <img
+                                    src="{{ asset('images/characters/'.$currentLevel.'.jpg') }}"
+                                    alt="{{ $currentCharacter->name }}"
+                                    class="profile-edit-hero__avatar-image">
+                            
                                 <div class="profile-edit-evolution__glow" aria-hidden="true"></div>
+                            
                             </div>
 
                             <div class="profile-edit-evolution__info">
                                 <span class="profile-edit-evolution__label">Karakter Saat Ini</span>
-                                <h3 class="profile-edit-evolution__name">{{ $currentAvatar['name'] }}</h3>
-                                <p class="profile-edit-evolution__subtitle">{{ $currentAvatar['nameId'] }}</p>
+                                <h3 class="profile-edit-evolution__name">{{ $currentCharacter->name }}</h3>
+                                <p class="profile-edit-evolution__subtitle">
+                                    Level {{ $currentLevel }}
+                                </p>
                                 <p class="profile-edit-evolution__desc">
                                     {{ $currentCharacter->description ?? '-' }}
                                 </p>
@@ -197,25 +195,33 @@ class="profile-edit-hero__avatar-image">
 
                         @if($nextCharacter)
                         <div class="profile-edit-evolution__next">
+                        
                             <span class="profile-edit-evolution__next-label">
                                 Evolusi Berikutnya Level {{ $nextCharacter->unlock_level }}:
                             </span>
+                        
                             <div class="profile-edit-evolution__next-card">
+                        
                                 <img
-src="{{ Storage::url($nextCharacter->image) }}"
-alt="{{ $nextCharacter->name }}"
-class="profile-edit-evolution__next-image">
+                                    src="{{ asset('images/characters/'.$nextCharacter->unlock_level.'.jpg') }}"
+                                    alt="{{ $nextCharacter->name }}"
+                                    class="profile-edit-evolution__next-image">
+                        
                                 <div class="profile-edit-evolution__next-info">
-                                    <span class="profile-edit-evolution__next-name">{{ $nextCharacter['name'] }}</span>
+                                    <span class="profile-edit-evolution__next-name">
+                                        {{ $nextCharacter->name }}
+                                    </span>
                                 </div>
                             </div>
                         </div>
+
                         @else
                         <div class="profile-edit-evolution__max">
                             <i class="fas fa-crown" aria-hidden="true"></i>
                             <span>Anda telah membuka seluruh Character Evolution.</span>
                         </div>
                         @endif
+
                     </div>
                 </div>
             </section>

@@ -30,17 +30,10 @@
 
 
         <div class="profile-hero__avatar">
-            @if($avatarCharacter && $avatarCharacter->image)
-                <img
-                    src="{{ asset('storage/'.$avatarCharacter->image) }}"
-                    alt="{{ $avatarCharacter->name }}"
-                    class="profile-hero__avatar-image">
-            @else
-                <img
-                    src="{{ asset('images/default-avatar.png') }}"
-                    alt="Default Avatar"
-                    class="profile-hero__avatar-image">
-            @endif
+            <img
+            src="{{ asset('images/characters/'.$currentLevel.'.jpg') }}"
+            alt="{{ $avatarCharacter->name ?? 'Character' }}"
+            class="profile-hero__avatar-image">
         </div>
 
             <div class="profile-hero__info">
@@ -68,6 +61,7 @@
                         <div class="profile-hero__stat-icon">
                             <i class="fas fa-star" aria-hidden="true"></i>
                         </div>
+
                         <div class="profile-hero__stat-info">
                             <span class="profile-hero__stat-label">Total XP</span>
                             <span class="profile-hero__stat-value">{{ number_format($currentXp) }}</span>
@@ -95,7 +89,6 @@
                     </div>
                 </div>
             </div>
-        </div>
     </section>
 
 
@@ -111,12 +104,10 @@
         <div class="evolution-showcase__content">
             <div class="evolution-showcase__current">
                 <div class="evolution-showcase__current-avatar">
-                    @if($avatarCharacter && $avatarCharacter->image)
                     <img
-                        src="{{ asset('storage/'.$avatarCharacter->image) }}"
-                        alt="{{ $avatarCharacter->name }}"
-                        class="evolution-showcase__avatar-image">
-                    @endif
+                    src="{{ asset('images/characters/'.$currentLevel.'.jpg') }}"
+                    alt="{{ $avatarCharacter->name ?? 'Character' }}"
+                    class="evolution-showcase__avatar-image">
 
                 </div>
 

@@ -92,7 +92,7 @@
             <div class="podium-item podium-item--second">
                 <div class="podium-item__avatar-wrapper">
                     <img
-src="{{ asset('storage/' . $top3[1]->character->image) }}"
+                    src="{{ asset('images/characters/' . ($top3[1]->current_level ?? 1) . '.jpg') }}"
                     class="podium-item__avatar podium-item__avatar--first"
                     alt="{{ $top3[1]->user->name_user }}">
                     <span class="podium-item__medal" aria-hidden="true">🥈</span>
@@ -115,7 +115,7 @@ src="{{ asset('storage/' . $top3[1]->character->image) }}"
             <div class="podium-item podium-item--first">
                 <div class="podium-item__avatar-wrapper">
                     <img
-src="{{ asset('storage/' . $top3[0]->character->image) }}"
+                    src="{{ asset('images/characters/' . ($top3[0]->current_level ?? 1) . '.jpg') }}"
                     class="podium-item__avatar podium-item__avatar--first"
                     alt="{{ $top3[0]->user->name_user }}">
                     <span class="podium-item__crown" aria-hidden="true">👑</span>
@@ -139,7 +139,7 @@ src="{{ asset('storage/' . $top3[0]->character->image) }}"
             <div class="podium-item podium-item--third">
                 <div class="podium-item__avatar-wrapper">
                     <img
-src="{{ asset('storage/' . $top3[2]->character->image) }}"
+                    src="{{ asset('images/characters/' . ($top3[2]->current_level ?? 1) . '.jpg') }}"
                     class="podium-item__avatar podium-item__avatar--first"
                     alt="{{ $top3[2]->user->name_user }}">
                     <span class="podium-item__medal" aria-hidden="true">🥉</span>
@@ -247,7 +247,7 @@ src="{{ asset('storage/' . $top3[2]->character->image) }}"
                     @endphp
                     
                     <img
-                    src="{{ asset('storage/'.$characterImage) }}"
+                    src="{{ asset('images/characters/' . ($stat->current_level ?? 1) . '.jpg') }}"
                     class="ranking-card__avatar"
                     alt="{{ $stat->user->name_user }}">
                 </div>
