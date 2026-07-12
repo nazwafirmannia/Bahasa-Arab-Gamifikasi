@@ -9,4 +9,4 @@ Artisan::command('inspire', function () {
 })->purpose('Display an inspiring quote');
 
 Schedule::command('reminder:study')
-    ->dailyAt('08:00');
+        ->everyMinute();
