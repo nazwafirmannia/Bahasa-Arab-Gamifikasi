@@ -29,15 +29,6 @@ class SendLearningReminder extends Command
                 continue;
             }
 
-            $lastActivity = $user->stat->last_activity;
-
-if ($lastActivity->diffInDays(now()) < 3) {
-    continue;
-}
-
-if ($user->stat->reminder_sent_at) {
-    continue;
-}
             try {
 
                 $response = Http::withHeaders([
