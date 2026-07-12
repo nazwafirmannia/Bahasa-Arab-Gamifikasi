@@ -42,7 +42,7 @@ if ($user->stat->reminder_sent_at) {
 
                 $response = Http::withHeaders([
                     'accept' => 'application/json',
-                    'api-key' => env('BREVO_API_KEY'),
+                    'api-key' => env('services.brevo.key'),
                     'content-type' => 'application/json',
                 ])->post('https://api.brevo.com/v3/smtp/email', [
 
