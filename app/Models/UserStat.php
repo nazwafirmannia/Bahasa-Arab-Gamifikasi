@@ -64,9 +64,10 @@ public function updateStreak(): array
 
     $this->refresh();
 
-    \Log::info('UPDATE STREAK START', [
-        'user' => $this->id_user,
-        'last_activity' => $this->last_activity,
+    \Log::info('===== UPDATE STREAK START =====', [
+        'id_user' => $this->id_user,
+        'streak_before' => $this->streak,
+        'last_activity_before' => $this->last_activity,
         'now' => now(),
     ]);
 
@@ -78,44 +79,77 @@ public function updateStreak(): array
         $this->streak = 1;
         $this->last_activity = now();
         $this->reminder_sent_at = null;
+
+        \Log::info('FIRST LOGIN BEFORE SAVE', [
+            'streak' => $this->streak,
+        ]);
+
         $this->save();
 
+        $this->refresh();
+
+        \Log::info('FIRST LOGIN AFTER SAVE', [
+            'streak' => $this->streak,
+            'last_activity' => $this->last_activity,
+        ]);
+
         $result['updated'] = true;
+
         return $result;
     }
 
-    // Hitung selisih hari
-    $days = $last->copy()->startOfDay()->diffInDays(now()->copy()->startOfDay());
+    $days = $last->copy()
+        ->startOfDay()
+        ->diffInDays(now()->copy()->startOfDay());
+
+    \Log::info('DAY DIFFERENCE', [
+        'days' => $days,
+    ]);
 
     // Hari yang sama
     if ($days == 0) {
 
         $this->last_activity = now();
         $this->reminder_sent_at = null;
+
+        \Log::info('SAME DAY BEFORE SAVE', [
+            'streak' => $this->streak,
+        ]);
+
         $this->save();
 
-        \Log::info('UPDATE STREAK SAVED', [
+        $this->refresh();
+
+        \Log::info('SAME DAY AFTER SAVE', [
             'streak' => $this->streak,
             'last_activity' => $this->last_activity,
         ]);
-        
+
         return $result;
     }
 
-    // Lewat 2 hari atau lebih
     if ($days >= 2) {
-
         $this->streak = 1;
-    }
-    // Besoknya
-    else {
-
+    } else {
         $this->streak += 1;
     }
 
+    \Log::info('UPDATE BEFORE SAVE', [
+        'days' => $days,
+        'streak' => $this->streak,
+    ]);
+
     $this->last_activity = now();
     $this->reminder_sent_at = null;
+
     $this->save();
+
+    $this->refresh();
+
+    \Log::info('UPDATE AFTER SAVE', [
+        'streak' => $this->streak,
+        'last_activity' => $this->last_activity,
+    ]);
 
     $result['updated'] = true;
 
@@ -133,7 +167,6 @@ public function updateStreak(): array
         $this->addXp($bonus['xp']);
 
         if ($this->user) {
-
             \App\Models\XpLog::create([
                 'id_user' => $this->user->id_user,
                 'amount' => $bonus['xp'],
