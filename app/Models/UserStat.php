@@ -64,6 +64,12 @@ public function updateStreak(): array
 
     $this->refresh();
 
+    \Log::info('UPDATE STREAK START', [
+        'user' => $this->id_user,
+        'last_activity' => $this->last_activity,
+        'now' => now(),
+    ]);
+
     $last = $this->last_activity;
 
     // Aktivitas pertama
@@ -88,6 +94,11 @@ public function updateStreak(): array
         $this->reminder_sent_at = null;
         $this->save();
 
+        \Log::info('UPDATE STREAK SAVED', [
+            'streak' => $this->streak,
+            'last_activity' => $this->last_activity,
+        ]);
+        
         return $result;
     }
 
