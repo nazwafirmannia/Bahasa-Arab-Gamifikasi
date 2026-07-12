@@ -222,7 +222,23 @@ public function completeMaterial($materialId)
             ]);
         
             $stat->refresh();
-            $stat->updateStreak();
+
+            \Log::info('BEFORE updateStreak', [
+                'id_user' => $stat->id_user,
+                'streak' => $stat->streak,
+                'last_activity' => $stat->last_activity,
+            ]);
+            
+            $result = $stat->updateStreak();
+            
+            $stat->refresh();
+            
+            \Log::info('AFTER updateStreak', [
+                'id_user' => $stat->id_user,
+                'streak' => $stat->streak,
+                'last_activity' => $stat->last_activity,
+                'result' => $result,
+            ]);
         });
         
         // ✅ HAPUS BadgeChecker & NotificationService SEMENTARA
